@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B69F1BBF17DBA3B700C81DB9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BBE17DBA3B700C81DB9 /* UIKit.framework */; };
+		B69F1BC117DBA3B700C81DB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BC017DBA3B700C81DB9 /* Foundation.framework */; };
+		B69F1BC317DBA3B700C81DB9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BC217DBA3B700C81DB9 /* CoreGraphics.framework */; };
+		B69F1BC917DBA3B700C81DB9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B69F1BC717DBA3B700C81DB9 /* InfoPlist.strings */; };
+		B69F1BCB17DBA3B700C81DB9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F1BCA17DBA3B700C81DB9 /* main.m */; };
+		B69F1BCF17DBA3B700C81DB9 /* TweetsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F1BCE17DBA3B700C81DB9 /* TweetsAppDelegate.m */; };
+		B69F1BD117DBA3B700C81DB9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B69F1BD017DBA3B700C81DB9 /* Default.png */; };
+		B69F1BD317DBA3B700C81DB9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B69F1BD217DBA3B700C81DB9 /* Default@2x.png */; };
+		B69F1BD517DBA3B700C81DB9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B69F1BD417DBA3B700C81DB9 /* Default-568h@2x.png */; };
+		B69F1BD817DBA3B700C81DB9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B69F1BD617DBA3B700C81DB9 /* MainStoryboard.storyboard */; };
+		B69F1BDB17DBA3B700C81DB9 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F1BDA17DBA3B700C81DB9 /* TweetsViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B69F1BBB17DBA3B700C81DB9 /* TwitterMini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterMini.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B69F1BBE17DBA3B700C81DB9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B69F1BC017DBA3B700C81DB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B69F1BC217DBA3B700C81DB9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B69F1BC617DBA3B700C81DB9 /* TwitterMini-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwitterMini-Info.plist"; sourceTree = "<group>"; };
+		B69F1BC817DBA3B700C81DB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B69F1BCA17DBA3B700C81DB9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B69F1BCC17DBA3B700C81DB9 /* TwitterMini-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TwitterMini-Prefix.pch"; sourceTree = "<group>"; };
+		B69F1BCD17DBA3B700C81DB9 /* TweetsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetsAppDelegate.h; sourceTree = "<group>"; };
+		B69F1BCE17DBA3B700C81DB9 /* TweetsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetsAppDelegate.m; sourceTree = "<group>"; };
+		B69F1BD017DBA3B700C81DB9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B69F1BD217DBA3B700C81DB9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B69F1BD417DBA3B700C81DB9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B69F1BD717DBA3B700C81DB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B69F1BD917DBA3B700C81DB9 /* TweetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
+		B69F1BDA17DBA3B700C81DB9 /* TweetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B69F1BB817DBA3B700C81DB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B69F1BBF17DBA3B700C81DB9 /* UIKit.framework in Frameworks */,
+				B69F1BC117DBA3B700C81DB9 /* Foundation.framework in Frameworks */,
+				B69F1BC317DBA3B700C81DB9 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B69F1BB217DBA3B700C81DB9 = {
+			isa = PBXGroup;
+			children = (
+				B69F1BC417DBA3B700C81DB9 /* TwitterMini */,
+				B69F1BBD17DBA3B700C81DB9 /* Frameworks */,
+				B69F1BBC17DBA3B700C81DB9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B69F1BBC17DBA3B700C81DB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B69F1BBB17DBA3B700C81DB9 /* TwitterMini.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B69F1BBD17DBA3B700C81DB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B69F1BBE17DBA3B700C81DB9 /* UIKit.framework */,
+				B69F1BC017DBA3B700C81DB9 /* Foundation.framework */,
+				B69F1BC217DBA3B700C81DB9 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B69F1BC417DBA3B700C81DB9 /* TwitterMini */ = {
+			isa = PBXGroup;
+			children = (
+				B69F1BCD17DBA3B700C81DB9 /* TweetsAppDelegate.h */,
+				B69F1BCE17DBA3B700C81DB9 /* TweetsAppDelegate.m */,
+				B69F1BD617DBA3B700C81DB9 /* MainStoryboard.storyboard */,
+				B69F1BD917DBA3B700C81DB9 /* TweetsViewController.h */,
+				B69F1BDA17DBA3B700C81DB9 /* TweetsViewController.m */,
+				B69F1BC517DBA3B700C81DB9 /* Supporting Files */,
+			);
+			path = TwitterMini;
+			sourceTree = "<group>";
+		};
+		B69F1BC517DBA3B700C81DB9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B69F1BC617DBA3B700C81DB9 /* TwitterMini-Info.plist */,
+				B69F1BC717DBA3B700C81DB9 /* InfoPlist.strings */,
+				B69F1BCA17DBA3B700C81DB9 /* main.m */,
+				B69F1BCC17DBA3B700C81DB9 /* TwitterMini-Prefix.pch */,
+				B69F1BD017DBA3B700C81DB9 /* Default.png */,
+				B69F1BD217DBA3B700C81DB9 /* Default@2x.png */,
+				B69F1BD417DBA3B700C81DB9 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B69F1BBA17DBA3B700C81DB9 /* TwitterMini */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B69F1BDE17DBA3B700C81DB9 /* Build configuration list for PBXNativeTarget "TwitterMini" */;
+			buildPhases = (
+				B69F1BB717DBA3B700C81DB9 /* Sources */,
+				B69F1BB817DBA3B700C81DB9 /* Frameworks */,
+				B69F1BB917DBA3B700C81DB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TwitterMini;
+			productName = TwitterMini;
+			productReference = B69F1BBB17DBA3B700C81DB9 /* TwitterMini.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B69F1BB317DBA3B700C81DB9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Tweets;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = directi;
+			};
+			buildConfigurationList = B69F1BB617DBA3B700C81DB9 /* Build configuration list for PBXProject "TwitterMini" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B69F1BB217DBA3B700C81DB9;
+			productRefGroup = B69F1BBC17DBA3B700C81DB9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B69F1BBA17DBA3B700C81DB9 /* TwitterMini */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B69F1BB917DBA3B700C81DB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B69F1BC917DBA3B700C81DB9 /* InfoPlist.strings in Resources */,
+				B69F1BD117DBA3B700C81DB9 /* Default.png in Resources */,
+				B69F1BD317DBA3B700C81DB9 /* Default@2x.png in Resources */,
+				B69F1BD517DBA3B700C81DB9 /* Default-568h@2x.png in Resources */,
+				B69F1BD817DBA3B700C81DB9 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B69F1BB717DBA3B700C81DB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B69F1BCB17DBA3B700C81DB9 /* main.m in Sources */,
+				B69F1BCF17DBA3B700C81DB9 /* TweetsAppDelegate.m in Sources */,
+				B69F1BDB17DBA3B700C81DB9 /* TweetsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B69F1BC717DBA3B700C81DB9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B69F1BC817DBA3B700C81DB9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B69F1BD617DBA3B700C81DB9 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B69F1BD717DBA3B700C81DB9 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B69F1BDC17DBA3B700C81DB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B69F1BDD17DBA3B700C81DB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B69F1BDF17DBA3B700C81DB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TwitterMini/TwitterMini-Prefix.pch";
+				INFOPLIST_FILE = "TwitterMini/TwitterMini-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B69F1BE017DBA3B700C81DB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TwitterMini/TwitterMini-Prefix.pch";
+				INFOPLIST_FILE = "TwitterMini/TwitterMini-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B69F1BB617DBA3B700C81DB9 /* Build configuration list for PBXProject "TwitterMini" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B69F1BDC17DBA3B700C81DB9 /* Debug */,
+				B69F1BDD17DBA3B700C81DB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B69F1BDE17DBA3B700C81DB9 /* Build configuration list for PBXNativeTarget "TwitterMini" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B69F1BDF17DBA3B700C81DB9 /* Debug */,
+				B69F1BE017DBA3B700C81DB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B69F1BB317DBA3B700C81DB9 /* Project object */;
+}
