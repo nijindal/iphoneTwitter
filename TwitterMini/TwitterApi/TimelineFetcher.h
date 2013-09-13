@@ -12,8 +12,8 @@
 
 typedef void(^responseHandler)(NSArray *response);
 
-- (id)init;
-
-- (void)fetchTimelineForUser:(NSString *)username withHandler : (responseHandler) handler;
+- (id) init;
+- (void) fetchHomeTimelineForUser : (NSString *)username withHandler : (responseHandler) handler;
+- (void) fetchSelfTimelineForUser:(NSString *)username withHandler:(responseHandler)handler;
 
 @end

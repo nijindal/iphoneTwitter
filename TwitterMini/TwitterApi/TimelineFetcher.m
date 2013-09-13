@@ -1,14 +1,7 @@
-//
-//  TimelineFetcher.m
-//  TwitterMini
-//
-//  Created by nikhil.ji on 07/09/13.
-//  Copyright (c) 2013 directi. All rights reserved.
-//
-
 #import "TimelineFetcher.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import "Util.h"
 
 @interface TimelineFetcher()
 @property (nonatomic) ACAccountStore *accountStore;
@@ -25,18 +18,37 @@
     return self;
 }
 
-- (BOOL)userHasAccessToTwitter
+- (void)fetchHomeTimelineForUser : (NSString *)username
+                     withHandler : (responseHandler) handler
 {
-    return [SLComposeViewController isAvailableForServiceType: SLServiceTypeTwitter];
+    NSDictionary *requestParams = @{@"screen_name" : username,
+                                    @"include_rts" : @"1",
+                                    @"trim_user" : @"0",
+                                    @"count" : @"25"};
+    
+    [self makeApiCall:@"https://api.twitter.com/1.1/statuses/home_timeline.json"
+           withParams:requestParams
+          withHandler:handler];
 }
 
-- (void)fetchTimelineForUser : (NSString *)username
-                withHandler : (responseHandler) handler
+- (void) fetchSelfTimelineForUser:(NSString *)username withHandler:(responseHandler)handler
 {
-    //  Step 0: Check that the user has local Twitter accounts
+    NSDictionary *requestParams = @{@"screen_name" : username,
+                                    @"include_rts" : @"1",
+                                    @"trim_user" : @"0",
+                                    @"count" : @"25"};
+    
+    [self makeApiCall:@"https://api.twitter.com/1.1/statuses/user_timeline.json"
+           withParams:requestParams
+          withHandler:handler];
+}
+
+
+- (void) makeApiCall : (NSString*) apiString
+          withParams : (NSDictionary*) params
+         withHandler : (responseHandler) handler
+{
     if ([self userHasAccessToTwitter]) {
-        
-        //  Step 1:  Obtain access to the user's Twitter accounts
         ACAccountType *twitterAccountType = [self.accountStore
                                              accountTypeWithAccountTypeIdentifier:
                                              ACAccountTypeIdentifierTwitter];
@@ -45,25 +57,14 @@
          options:NULL
          completion:^(BOOL granted, NSError *error) {
              if (granted) {
-                 //  Step 2:  Create a request
                  NSArray *twitterAccounts =
                  [self.accountStore accountsWithAccountType:twitterAccountType];
-                 NSURL *url = [NSURL URLWithString:@"https://api.twitter.com"
-                               @"/1.1/statuses/user_timeline.json"];
-                 NSDictionary *params = @{@"screen_name" : username,
-                                          @"include_rts" : @"1",
-                                          @"trim_user" : @"0",
-                                          @"count" : @"15"};
-                 SLRequest *request =
-                 [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                    requestMethod:SLRequestMethodGET
-                                              URL:url
-                                       parameters:params];
-                 
-                 //  Attach an account to the request
+                 NSURL *url = [NSURL URLWithString: apiString];
+                 SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                                         requestMethod:SLRequestMethodGET
+                                                                   URL:url
+                                                            parameters:params];
                  [request setAccount:[twitterAccounts lastObject]];
-                 
-                 //  Step 3:  Execute the request
                  [request performRequestWithHandler:^(NSData *responseData,
                                                       NSHTTPURLResponse *urlResponse,
                                                       NSError *error) {
@@ -77,6 +78,7 @@
                              
                              if ([timelineData isKindOfClass:[NSArray class]]) {
                                  NSLog(@"Timeline Response: %@\n", timelineData);
+                                 timelineData = [Util changeTweetsArray:timelineData];
                                  NSArray *tweetsArray = (NSArray*) timelineData;
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      handler(tweetsArray);
@@ -100,6 +102,14 @@
              }
          }];
     }
+    
+    
 }
+
+- (BOOL)userHasAccessToTwitter
+{
+    return [SLComposeViewController isAvailableForServiceType: SLServiceTypeTwitter];
+}
+
 
 @end
