@@ -1,25 +1,47 @@
 #import "HomeTweetsCDTVC.h"
 #import "Tweet+create.h"
+#import "ThreadManager.h"
+#import "ApiUtil.h"
+
+@interface HomeTweetsCDTVC()<FHSTwitterEngineAccessTokenDelegate>
+@end
 
 @implementation HomeTweetsCDTVC
 
--(void) setContext: (NSManagedObjectContext *) context
+- (void) viewDidLoad
 {
-    [super setContext:context];
-    if(context) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
-        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"time" ascending:NO selector:@selector(compare:)]];
-        self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
-    }
+    [super viewDidLoad];
+    [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:@"W7z7KpZNxVxD3UnUHVBdnQ" andSecret:@"EmR8ldrd1mtNSvDcl307LfpMAAdq9Nhqa8acNLI84"];
+    [[FHSTwitterEngine sharedEngine] setDelegate:self];
+    [self checkForNewTweets];
 }
 
-- (void) refetchTweets {
-    [self.tweetsFetcher fetchHomeTimelineForUser:@"j1nd4L" withHandler:^(NSArray *response) {
-        for (NSDictionary *tweet in  response) {
-            [Tweet tweetWithData:tweet inManagedObjectContext:self.context];
-        }
-        [super refetchTweets];
-    }];
+- (void) loadTweets {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"time" ascending:NO selector:@selector(compare:)]];
+    self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext: [ThreadManager mainThreadContext] sectionNameKeyPath:nil cacheName:nil];
 }
+
+- (void) fetchData
+{
+    [ApiUtil fetchLatestTweets];
+}
+
+- (void) fetchOldTweets
+{
+    [ApiUtil fethOldTweets];
+}
+
+- (NSString *)loadAccessToken
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"SavedAccessHTTPBody"];
+}
+
+- (void)storeAccessToken:(NSString *)accessToken
+{
+    [[NSUserDefaults standardUserDefaults]setObject:accessToken forKey:@"SavedAccessHTTPBody"];
+}
+
+
 
 @end

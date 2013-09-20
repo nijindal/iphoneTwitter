@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Util : NSObject
+@interface ApiUtil : NSObject
 
 + (NSDictionary *) changeTweetDataToCorrectType: (NSDictionary *) rawData;
 
 + (NSArray *) changeTweetsArray: (NSArray *) rawData;
+
++ (void) fetchLatestTweets;
+
++ (void) fethOldTweets;
+
 @end

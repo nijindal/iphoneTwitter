@@ -8,12 +8,16 @@
 
 #import "CoreDataTableViewController.h"
 #import "TimelineFetcher.h"
+#import "FHSTwitterEngine.h"
+#import "ApiUtil.h"
+#import "ThreadManager.h"
 
 @interface TweetsCDTVC : CoreDataTableViewController
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) TimelineFetcher *tweetsFetcher;
+@property (nonatomic, strong) ThreadManager *threadManager;
 
-- (void) refetchTweets;
+- (void) loadTweets;
+- (void) checkForNewTweets;
 
 @end

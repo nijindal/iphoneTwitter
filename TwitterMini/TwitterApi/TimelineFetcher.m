@@ -1,7 +1,7 @@
 #import "TimelineFetcher.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
-#import "Util.h"
+#import "ApiUtil.h"
 
 @interface TimelineFetcher()
 @property (nonatomic) ACAccountStore *accountStore;
@@ -78,7 +78,7 @@
                              
                              if ([timelineData isKindOfClass:[NSArray class]]) {
                                  NSLog(@"Timeline Response: %@\n", timelineData);
-                                 timelineData = [Util changeTweetsArray:timelineData];
+                                 timelineData = [ApiUtil changeTweetsArray:timelineData];
                                  NSArray *tweetsArray = (NSArray*) timelineData;
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      handler(tweetsArray);
@@ -102,8 +102,6 @@
              }
          }];
     }
-    
-    
 }
 
 - (BOOL)userHasAccessToTwitter
