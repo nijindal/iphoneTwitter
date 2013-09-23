@@ -1310,6 +1310,9 @@ id removeNull(id rootObject) {
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
+    NSString* responseString = [NSString stringWithUTF8String:[data bytes]];
+    NSLog(@"response of request is: %@", responseString);
+
     if (error) {
         return error;
     }

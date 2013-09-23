@@ -1,6 +1,7 @@
 #import "SingleTweetViewController.h"
 #import "User.h"
 #import "Util.h"
+#import "ThreadManager.h"
 
 @interface SingleTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -17,7 +18,20 @@
     self.name.text = self.tweet.tweetedBy.name;
     self.handle.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.handle];
     self.tweetText.text = self.tweet.text;
-    [Util assignDefaultImage:[UIImage imageNamed:@"avatar-default"] andFetchUrl:self.tweet.tweetedBy.image_url onImageView: self.imageView];
+    
+    NSString *imageUrl = self.tweet.tweetedBy.image_url;
+    [self.imageView setImage: [UIImage imageNamed:@"default-avatar.png"]];
+    dispatch_async(GCDBackgroundThread, ^{
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: imageUrl]]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if([self.tweet.tweetedBy.image_url isEqualToString:imageUrl]){
+                [self.imageView setImage: image];
+            }
+        });
+    });
+    
+    
+    [Util assignDefaultImage:[UIImage imageNamed:@"avatar-default"] andFetchUrl:self.tweet.tweetedBy.image_url onImageView: self.imageView onTweetCell:NULL];
     [Util decorateDate:self.tweet.time onLabel:self.time];
     [self handleTweetLabelSize];
 }

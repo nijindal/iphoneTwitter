@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) TimelineFetcher *tweetsFetcher;
 @property (nonatomic, strong) ThreadManager *threadManager;
+@property (nonatomic) int height;
 
 - (void) loadTweets;
 - (void) checkForNewTweets;

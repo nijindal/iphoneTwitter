@@ -74,7 +74,7 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    TweetsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = [self.fetchResultsController objectAtIndexPath:indexPath];
     if(![cell isKindOfClass:[TweetsCell class]]){
         return cell;
@@ -87,12 +87,18 @@
     CGFloat cellHeight;
     NSUInteger PADDING_TOP = 28;
     NSUInteger HEIGHT_DATE = 30;
+    NSUInteger labelWidth;
     
     Tweet *tweet = [self.fetchResultsController objectAtIndexPath:indexPath];
     UIFont *font = [UIFont systemFontOfSize:14];
-    CGSize expectedLabelSize = [tweet.text sizeWithFont:font constrainedToSize:CGSizeMake(226, 6000) lineBreakMode: NSLineBreakByWordWrapping];
+    labelWidth = (self.tableView.frame.size.width == 320) ? 236 : 396;
+    CGSize expectedLabelSize = [tweet.text sizeWithFont:font constrainedToSize:CGSizeMake(labelWidth, 6000) lineBreakMode: NSLineBreakByWordWrapping];
     cellHeight = expectedLabelSize.height + (PADDING_TOP + HEIGHT_DATE);
     return cellHeight;
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [self.tableView reloadData];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/views/TweetsCell.m"
-         timestampString = "401275948.821634"
+         timestampString = "401623566.63553"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "12"
-         endingLineNumber = "12"
+         startingLineNumber = "17"
+         endingLineNumber = "17"
          landmarkName = "-populateWithContent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/views/TweetsCell.m"
-         timestampString = "401275948.821634"
+         timestampString = "401618652.751821"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "10"
-         endingLineNumber = "10"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
          landmarkName = "-populateWithContent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -524,11 +524,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/SingleTweetViewController.m"
-         timestampString = "401281316.524295"
+         timestampString = "401623343.459395"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "43"
-         endingLineNumber = "43"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
          landmarkName = "-awakeFromNib"
          landmarkType = "5">
       </FileBreakpoint>
@@ -550,11 +550,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/SingleTweetViewController.m"
-         timestampString = "401281316.524295"
+         timestampString = "401623343.459395"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -563,20 +563,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/SingleTweetViewController.m"
-         timestampString = "401279215.802186"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "16"
-         endingLineNumber = "16"
-         landmarkName = "-fillInAttributes"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "TwitterMini/SingleTweetViewController.m"
-         timestampString = "401279215.802186"
+         timestampString = "401623343.459395"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "17"
@@ -588,13 +575,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "TwitterMini/views/Util.m"
-         timestampString = "401276992.118396"
+         filePath = "TwitterMini/SingleTweetViewController.m"
+         timestampString = "401623343.459395"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "11"
-         endingLineNumber = "11"
-         landmarkName = "+assignDefaultImage:andFetchUrl:onImageView:"
+         startingLineNumber = "18"
+         endingLineNumber = "18"
+         landmarkName = "-fillInAttributes"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -602,11 +589,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/TweetsCDTVC.m"
-         timestampString = "401362076.935083"
+         timestampString = "401635137.304532"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "108"
-         endingLineNumber = "108"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
          landmarkName = "-scrollViewDidScroll:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -615,11 +602,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401357976.983988"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1523"
-         endingLineNumber = "1523"
+         startingLineNumber = "1526"
+         endingLineNumber = "1526"
          landmarkName = "-sendGETRequestForURL:andParams:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -628,11 +615,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401358019.756792"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1513"
-         endingLineNumber = "1513"
+         startingLineNumber = "1516"
+         endingLineNumber = "1516"
          landmarkName = "-sendGETRequestForURL:andParams:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -641,11 +628,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401358116.667512"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1313"
-         endingLineNumber = "1313"
+         startingLineNumber = "1316"
+         endingLineNumber = "1316"
          landmarkName = "-sendRequest:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -654,7 +641,20 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401358142.84192"
+         timestampString = "401640642.64284"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1320"
+         endingLineNumber = "1320"
+         landmarkName = "-sendRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/FHSTwitterEngine.m"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1317"
@@ -667,11 +667,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401358145.348698"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1314"
-         endingLineNumber = "1314"
+         startingLineNumber = "1321"
+         endingLineNumber = "1321"
          landmarkName = "-sendRequest:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -680,24 +680,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401358479.228981"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1318"
-         endingLineNumber = "1318"
-         landmarkName = "-sendRequest:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401358595.596015"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1514"
-         endingLineNumber = "1514"
+         startingLineNumber = "1517"
+         endingLineNumber = "1517"
          landmarkName = "-sendGETRequestForURL:andParams:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -706,11 +693,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TwitterMini/FHSTwitterEngine.m"
-         timestampString = "401359199.074571"
+         timestampString = "401640642.64284"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1315"
-         endingLineNumber = "1315"
+         startingLineNumber = "1318"
+         endingLineNumber = "1318"
          landmarkName = "-sendRequest:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -725,6 +712,110 @@
          startingLineNumber = "43"
          endingLineNumber = "43"
          landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/views/Util.m"
+         timestampString = "401623343.459395"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "15"
+         endingLineNumber = "15"
+         landmarkName = "+assignDefaultImage:andFetchUrl:onImageView:onTweetCell:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/views/TweetsCell.m"
+         timestampString = "401623566.63553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
+         landmarkName = "-populateWithContent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/TweetsCDTVC.m"
+         timestampString = "401633804.764156"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
+         landmarkName = "-tableView:heightForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/TweetsCDTVC.m"
+         timestampString = "401633883.620068"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "94"
+         endingLineNumber = "94"
+         landmarkName = "-tableView:heightForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/TweetsCDTVC.m"
+         timestampString = "401635144.70942"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
+         landmarkName = "-didRotateFromInterfaceOrientation:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/FHSTwitterEngine.m"
+         timestampString = "401639144.381795"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1217"
+         endingLineNumber = "1217"
+         landmarkName = "-postTweet:inReplyTo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/FHSTwitterEngine.m"
+         timestampString = "401640642.64284"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1459"
+         endingLineNumber = "1459"
+         landmarkName = "-sendPOSTRequestForURL:andParams:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TwitterMini/TweetCreatorViewController.m"
+         timestampString = "401649680.49581"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "-sendTweet:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

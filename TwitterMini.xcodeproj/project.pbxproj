@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		B6158E6E17E0894A0047A30F /* TweetsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6158E6D17E0894A0047A30F /* TweetsCDTVC.m */; };
 		B6158E7117E0A1E30047A30F /* ApiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B6158E7017E0A1E30047A30F /* ApiUtil.m */; };
+		B617452317F0794D00DB038C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B617452217F0794D00DB038C /* ProfileViewController.m */; };
+		B617452617F07FDE00DB038C /* TweetCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B617452517F07FDE00DB038C /* TweetCreatorViewController.m */; };
+		B61E20F017F0A4F3009DCFC9 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B61E20EF17F0A4F3009DCFC9 /* UIPlaceHolderTextView.m */; };
+		B61E20F217F0A57D009DCFC9 /* PlaceHolderTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B61E20F117F0A57D009DCFC9 /* PlaceHolderTextView.xib */; };
 		B625C79517E754B6007775F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B625C79417E754B6007775F2 /* SystemConfiguration.framework */; };
 		B625C79F17E756BA007775F2 /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B625C79E17E756BA007775F2 /* FHSTwitterEngine.m */; };
 		B625C7D917E9E4F8007775F2 /* ThreadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B625C7D817E9E4F7007775F2 /* ThreadManager.m */; };
@@ -47,6 +51,13 @@
 		B6158E6D17E0894A0047A30F /* TweetsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsCDTVC.m; sourceTree = "<group>"; };
 		B6158E6F17E0A1E30047A30F /* ApiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiUtil.h; sourceTree = "<group>"; };
 		B6158E7017E0A1E30047A30F /* ApiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiUtil.m; sourceTree = "<group>"; };
+		B617452117F0794D00DB038C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		B617452217F0794D00DB038C /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		B617452417F07FDE00DB038C /* TweetCreatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCreatorViewController.h; sourceTree = "<group>"; };
+		B617452517F07FDE00DB038C /* TweetCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCreatorViewController.m; sourceTree = "<group>"; };
+		B61E20EE17F0A4F3009DCFC9 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		B61E20EF17F0A4F3009DCFC9 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		B61E20F117F0A57D009DCFC9 /* PlaceHolderTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceHolderTextView.xib; sourceTree = "<group>"; };
 		B625C79417E754B6007775F2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B625C79D17E756BA007775F2 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
 		B625C79E17E756BA007775F2 /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
@@ -130,6 +141,10 @@
 				B66D2B9A17EAF22D0097A64E /* SingleTweetViewController.m */,
 				B66D2B9C17EAFA2B0097A64E /* Util.h */,
 				B66D2B9D17EAFA2B0097A64E /* Util.m */,
+				B617452117F0794D00DB038C /* ProfileViewController.h */,
+				B617452217F0794D00DB038C /* ProfileViewController.m */,
+				B617452417F07FDE00DB038C /* TweetCreatorViewController.h */,
+				B617452517F07FDE00DB038C /* TweetCreatorViewController.m */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -237,6 +252,9 @@
 				B6EE9DC317E314AF00D3F287 /* TweetCell.xib */,
 				B69F1BEE17DC9E4300C81DB9 /* TweetsCell.h */,
 				B69F1BEF17DC9E4300C81DB9 /* TweetsCell.m */,
+				B61E20EE17F0A4F3009DCFC9 /* UIPlaceHolderTextView.h */,
+				B61E20EF17F0A4F3009DCFC9 /* UIPlaceHolderTextView.m */,
+				B61E20F117F0A57D009DCFC9 /* PlaceHolderTextView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -308,6 +326,7 @@
 				B69F1BD817DBA3B700C81DB9 /* MainStoryboard.storyboard in Resources */,
 				B6EE9DB617E21DAF00D3F287 /* default-avatar.png in Resources */,
 				B6EE9DC417E314AF00D3F287 /* TweetCell.xib in Resources */,
+				B61E20F217F0A57D009DCFC9 /* PlaceHolderTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +356,9 @@
 				B625C7D917E9E4F8007775F2 /* ThreadManager.m in Sources */,
 				B66D2B9B17EAF22D0097A64E /* SingleTweetViewController.m in Sources */,
 				B66D2B9E17EAFA2B0097A64E /* Util.m in Sources */,
+				B617452317F0794D00DB038C /* ProfileViewController.m in Sources */,
+				B617452617F07FDE00DB038C /* TweetCreatorViewController.m in Sources */,
+				B61E20F017F0A4F3009DCFC9 /* UIPlaceHolderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
