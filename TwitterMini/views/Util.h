@@ -4,8 +4,8 @@
 
 @interface Util : NSObject
 
-+ (void) assignDefaultImage: (UIImage *) image andFetchUrl: (NSString *) urlString onImageView: (UIImageView *) imageView onTweetCell: (TweetsCell *) tweetCell;
-
 + (void) decorateDate: (NSDate *) date onLabel: (UILabel *)label;
+
++ (NSURL *) createMobileBannerUrl : (NSString *)savedUrl;
 
 @end

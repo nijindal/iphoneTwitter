@@ -1,17 +1,9 @@
-//
-//  Util.m
-//  TwitterMini
-//
-//  Created by nikhil.ji on 11/09/13.
-//  Copyright (c) 2013 directi. All rights reserved.
-//
-
 #import "ApiUtil.h"
 #import "ThreadManager.h"
 #import "FHSTwitterEngine.h"
 #import "Tweet+create.h"
 
-#define FAIRLY_HIGH_NUMBER @9999999999999999999LL;
+#define FAIRLY_HIGH_NUMBER @99999999999999999LL;
 
 @implementation ApiUtil
 
@@ -53,6 +45,7 @@
     dispatch_async(GCDBackgroundThread, ^{
         NSArray *queryResponse = [[FHSTwitterEngine sharedEngine] getHomeTimelineSinceID:latestIDString count:25];
         NSLog(@"%@", queryResponse);
+        NSManagedObjectContext *writer = [[ThreadManager sharedInstance] coreDataWriterInterface];
         queryResponse = [ApiUtil changeTweetsArray: queryResponse];
         
         for (NSDictionary *tweet in  queryResponse) {
@@ -62,9 +55,11 @@
             if ([minValue compare:[tweet valueForKey:@"id"]] == NSOrderedDescending) {
                 minValue = [tweet valueForKey:@"id"];
             }
-            [[ThreadManager CoreDateWriterContext] performBlock:^{
-                [Tweet tweetWithData:tweet inManagedObjectContext: [ThreadManager CoreDateWriterContext]];
+            [writer performBlock:^{
+                [Tweet tweetWithData:tweet inManagedObjectContext: writer];
+                [[ThreadManager sharedInstance] writeChangeToCoreData];
             }];
+
         }
         [[NSUserDefaults standardUserDefaults] setValue:maxValue forKey:@"latest_home_tweet_id"];
         [[NSUserDefaults standardUserDefaults] setValue:minValue forKey:@"last_home_tweet_id"];
@@ -80,15 +75,18 @@
     
     dispatch_async(GCDBackgroundThread, ^{
         NSArray *queryResponse = [[FHSTwitterEngine sharedEngine] getHomeTimelineAfterID:lastIDString count:25];
+        NSManagedObjectContext *writer = [[ThreadManager sharedInstance] coreDataWriterInterface];
         NSLog(@"%@", queryResponse);
+        
         queryResponse = [ApiUtil changeTweetsArray: queryResponse];
         
         for (NSDictionary *tweet in  queryResponse) {
             if ([minValue compare:[tweet valueForKey:@"id"]] == NSOrderedDescending) {
                 minValue = [tweet valueForKey:@"id"];
             }
-            [[ThreadManager CoreDateWriterContext] performBlock:^{
-                [Tweet tweetWithData:tweet inManagedObjectContext: [ThreadManager CoreDateWriterContext]];
+            [writer performBlock:^{
+                [Tweet tweetWithData:tweet inManagedObjectContext: writer];
+                [[ThreadManager sharedInstance] writeChangeToCoreData];
             }];
         }
         [[NSUserDefaults standardUserDefaults] setValue:minValue forKey:@"last_home_tweet_id"];

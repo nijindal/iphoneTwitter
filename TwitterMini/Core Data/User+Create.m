@@ -7,6 +7,8 @@
 //
 
 #import "User+Create.h"
+#import "UserProfileManager.h"
+#import "ThreadManager.h"
 
 @implementation User (Create)
 
@@ -27,14 +29,17 @@
         user.handle = [[data valueForKey:@"screen_name"] description];
         user.desc = [[data valueForKey:@"description"] description];
         user.image_url = [[data valueForKey:@"profile_image_url"] description];
+        user.followers_count = [data valueForKey:@"followers_count"] ;
+        user.friends_count = [data valueForKey:@"friends_count"];
+        user.banner_url = [[data valueForKey:@"profile_banner_url"] description];
+        user.tweet_count = [data valueForKey:@"statuses_count"];
         user.id = [data valueForKey:@"id"];
+        user.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString: user.image_url]];
+        [context save:nil];
     } else {
         user = [matches lastObject];
     }
-
     return user;
 }
-
-
 
 @end

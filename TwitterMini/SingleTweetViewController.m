@@ -2,6 +2,7 @@
 #import "User.h"
 #import "Util.h"
 #import "ThreadManager.h"
+#import "ProfileTVC.h"
 
 @interface SingleTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -13,25 +14,18 @@
 
 @implementation SingleTweetViewController
 
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    [self fillInAttributes];
+}
+
 - (void) fillInAttributes
 {
     self.name.text = self.tweet.tweetedBy.name;
     self.handle.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.handle];
     self.tweetText.text = self.tweet.text;
-    
-    NSString *imageUrl = self.tweet.tweetedBy.image_url;
-    [self.imageView setImage: [UIImage imageNamed:@"default-avatar.png"]];
-    dispatch_async(GCDBackgroundThread, ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: imageUrl]]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if([self.tweet.tweetedBy.image_url isEqualToString:imageUrl]){
-                [self.imageView setImage: image];
-            }
-        });
-    });
-    
-    
-    [Util assignDefaultImage:[UIImage imageNamed:@"avatar-default"] andFetchUrl:self.tweet.tweetedBy.image_url onImageView: self.imageView onTweetCell:NULL];
+    [self.imageView setImage:[UIImage imageWithData:self.tweet.tweetedBy.image_data]];
     [Util decorateDate:self.tweet.time onLabel:self.time];
     [self handleTweetLabelSize];
 }
@@ -44,17 +38,6 @@
     rect.size.height = expectedLabelSize.height;
     self.tweetText.frame = rect;
     [self.view layoutIfNeeded];
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    [self fillInAttributes];
-}
-
-- (void) awakeFromNib
-{
-    NSLog(@"Awoken from NIB");
 }
 
 @end

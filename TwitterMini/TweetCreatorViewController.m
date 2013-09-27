@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeHolder;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sendButton;
 @property (nonatomic) int count;
+- (IBAction)dismissModal:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *charCount;
 @end
 
@@ -28,15 +29,6 @@
     [[self.tweetArea layer] setBorderWidth:2.3];
 }
 
-- (void) textViewDidBeginEditing:(UITextView *)textView
-{
-    [self.placeHolder removeFromSuperview];
-}
-
-- (void) textViewDidEndEditing:(UITextView *)textView
-{
-    [self.view addSubview:self.placeHolder];
-}
 
 - (void) textViewDidChange:(UITextView *)textView
 {
@@ -54,13 +46,14 @@
         NSError *error = [[FHSTwitterEngine sharedEngine] postTweet: tweetText];
         self.sendButton.enabled = NO;
         if(!error) {
-            NSLog(@"No error. Awesome..");
             dispatch_async(GCDMainThread, ^{
-                self.tweetArea.text = @"";
-                self.sendButton.enabled = YES;
+                [self dismissViewControllerAnimated:YES completion:nil];
             });
         }
     });
-
+    
+}
+- (IBAction)dismissModal:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

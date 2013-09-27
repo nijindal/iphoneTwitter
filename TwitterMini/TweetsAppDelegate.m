@@ -7,12 +7,14 @@
 //
 
 #import "TweetsAppDelegate.h"
+#import "UserProfileManager.h"
 
 @implementation TweetsAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+//    AuthenticationManager *authManager = [[AuthenticationManager alloc] init];
+//    [UserProfileManager fetchOwner];
     return YES;
 }
 							

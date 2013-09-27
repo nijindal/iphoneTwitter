@@ -1,14 +1,8 @@
-//
-//  SelfTweetsCDTVC.h
-//  TwitterMini
-//
-//  Created by nikhil.ji on 13/09/13.
-//  Copyright (c) 2013 directi. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 #import "TweetsCDTVC.h"
+#import "User.h"
 
 @interface SelfTweetsCDTVC : TweetsCDTVC
-
+@property (nonatomic, strong) User* designatedUser;
 @end

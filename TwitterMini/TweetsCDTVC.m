@@ -1,76 +1,46 @@
+
 #import "TweetsCDTVC.h"
-#import "Tweet.h"
 #import "Tweet+create.h"
 #import "TweetsCell.h"
 #import "SingleTweetViewController.h"
 
 @implementation TweetsCDTVC
 
-- (void) loadTweets {}
-
-- (ThreadManager*) threadManager
+- (void)awakeFromNib
 {
-    if(_threadManager) {
-        return _threadManager;
-    }
-    _threadManager = [[ThreadManager alloc] init];
-    return _threadManager;
-}
-
-- (TimelineFetcher *)tweetsFetcher
-{
-    if (!_tweetsFetcher) _tweetsFetcher = [[TimelineFetcher alloc] init];
-    return _tweetsFetcher;
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSIndexPath *path = [self.tableView indexPathForCell:sender];
-    Tweet *tweet = [self.fetchResultsController objectAtIndexPath:path];
-    id destinationController = segue.destinationViewController;
-    if(![destinationController isKindOfClass:[SingleTweetViewController class]]){
-        return;
-    }
-    destinationController = (SingleTweetViewController *) destinationController;
-    [destinationController setTweet: tweet];
+    [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:@"W7z7KpZNxVxD3UnUHVBdnQ" andSecret:@"EmR8ldrd1mtNSvDcl307LfpMAAdq9Nhqa8acNLI84"];
+    [[FHSTwitterEngine sharedEngine] setDelegate:self];
 }
 
 - (void) viewDidLoad
 {
+    [super viewDidLoad];
     UINib *tweetNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib:tweetNib forCellReuseIdentifier:@"TweetCell"];
-    [self.refreshControl addTarget:self action:@selector(checkForNewTweets) forControlEvents:UIControlEventValueChanged];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:NSManagedObjectContextDidSaveNotification object:nil];
-}
 
-- (void) refreshTable: (NSNotification *) notification
-{
-    [self.fetchResultsController.managedObjectContext mergeChangesFromContextDidSaveNotification: notification];
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self loadTweets];
-}
-
-- (void) checkForNewTweets {
     [[FHSTwitterEngine sharedEngine] loadAccessToken];
-    NSString *username = [[FHSTwitterEngine sharedEngine] loggedInUsername];
-    if (username.length > 0) {
-        [self fetchData];
-        [self.refreshControl endRefreshing];
-    } else {
-        [[FHSTwitterEngine sharedEngine] showOAuthLoginControllerFromViewController:self withCompletion: ^(BOOL success) {
-            [self fetchData];
-            [self.refreshControl endRefreshing];
+    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    if(![[FHSTwitterEngine sharedEngine] isAuthorized]){
+        [[FHSTwitterEngine sharedEngine] showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
+            if(success) [self fetchData];
         }];
     }
 }
 
-- (void) fetchData {}
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setupFetchController];
+}
 
-- (void) fetchOldTweets {}
+- (NSString *)loadAccessToken
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"SavedAccessHTTPBody"];
+}
 
+- (void)storeAccessToken:(NSString *)accessToken
+{
+    [[NSUserDefaults standardUserDefaults]setObject:accessToken forKey:@"SavedAccessHTTPBody"];
+}
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -97,10 +67,6 @@
     return cellHeight;
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [self.tableView reloadData];
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGPoint offset = scrollView.contentOffset;
     CGRect bounds = scrollView.bounds;
@@ -108,8 +74,7 @@
     UIEdgeInsets inset = scrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     float h = size.height;
-
-//    float reload_distance = 10;
+    
     if(y == h) {
         [self fetchOldTweets];
     }
@@ -120,5 +85,26 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"ShowTweet" sender:cell];
 }
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *path = [self.tableView indexPathForCell:sender];
+    Tweet *tweet = [self.fetchResultsController objectAtIndexPath:path];
+    id destinationController = segue.destinationViewController;
+    if(![destinationController isKindOfClass:[SingleTweetViewController class]]){
+        return;
+    }
+    destinationController = (SingleTweetViewController *) destinationController;
+    [destinationController setTweet: tweet];
+}
+
+#pragma mark - Abstract methods.
+
+- (void) setupFetchController {}
+
+- (void) fetchData {}
+
+- (void) fetchOldTweets {}
+
 
 @end

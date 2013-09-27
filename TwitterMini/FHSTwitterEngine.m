@@ -323,7 +323,7 @@ id removeNull(id rootObject) {
         return [NSError badRequestError];
     }
     
-    NSURL *baseURL = [NSURL URLWithString:url_friends_list];
+    NSURL *baseURL = [NSURL URLWithString:url_followers_list];
     
     return [self sendGETRequestForURL:baseURL andParams:@{@"skip_status":@"true", @"include_entities":(_includeEntities?@"true":@"false"), (isID?@"user_id":@"screen_name"):user, @"cursor":cursor }];
 }
@@ -1299,7 +1299,7 @@ id removeNull(id rootObject) {
 //
 
 - (id)sendRequest:(NSURLRequest *)request {
-    
+    NSLog(@"Request Sent: %@", request);
     if (_shouldClearConsumer) {
         self.shouldClearConsumer = NO;
         self.consumer = nil;
@@ -1311,7 +1311,7 @@ id removeNull(id rootObject) {
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSString* responseString = [NSString stringWithUTF8String:[data bytes]];
-    NSLog(@"response of request is: %@", responseString);
+    NSLog(@"response of request: %@", responseString);
 
     if (error) {
         return error;

@@ -1,37 +1,40 @@
+
 #import "SelfTweetsCDTVC.h"
 #import "Tweet+create.h"
-#import "User.h"
 #import "ThreadManager.h"
+
+@interface SelfTweetsCDTVC()
+@property (nonatomic, strong) NSManagedObjectContext *mainMoc;
+@end
 
 @implementation SelfTweetsCDTVC
 
-- (void) loadTweets
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    if(!self.mainMoc){
+        self.mainMoc = [[ThreadManager sharedInstance] createInMemoryStoreContext];
+        [self fetchData];
+    }
+}
+
+- (void) setupFetchController
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"time" ascending:NO selector:@selector(compare:)]];
-    request.predicate = [NSPredicate predicateWithFormat:@"tweetedBy.handle == %@", @"j1nd4L"];
-    self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext: [ThreadManager mainThreadContext] sectionNameKeyPath:nil cacheName:nil];
+    self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext: self.mainMoc sectionNameKeyPath:nil cacheName:nil];
 }
 
 - (void) fetchData
 {
-    NSNumber *latestTweetId = [[NSUserDefaults standardUserDefaults] valueForKey:@"latest_self_tweet_id"];
-    NSString *stringFormat =  latestTweetId ? [NSString stringWithFormat:@"%lld", [latestTweetId longLongValue]] : nil;
-    
     dispatch_async(GCDBackgroundThread, ^{
-        NSArray *queryResponse =     [[FHSTwitterEngine sharedEngine] getTimelineForUser:@"j1nd4L" isID:NO count:25 sinceID:stringFormat maxID:nil];
-        NSLog(@"Self Response %@", queryResponse);
+        NSArray *queryResponse = [[FHSTwitterEngine sharedEngine] getTimelineForUser:self.designatedUser.handle isID:NO count:25 sinceID:nil maxID:nil];
         queryResponse = [ApiUtil changeTweetsArray: queryResponse];
-        NSNumber *maxValue = latestTweetId ? latestTweetId : [NSNumber numberWithInt:0];
         for (NSDictionary *tweet in  queryResponse) {
-            if([maxValue compare:[tweet valueForKey:@"id"]] == NSOrderedAscending) {
-                maxValue = [tweet valueForKey:@"id"];
-            }
-            [[ThreadManager CoreDateWriterContext] performBlockAndWait:^{
-                [Tweet tweetWithData:tweet inManagedObjectContext:[ThreadManager CoreDateWriterContext]];
+            [self.mainMoc performBlockAndWait:^{
+                [Tweet tweetWithData:tweet inManagedObjectContext: self.mainMoc];
             }];
         }
-        [[NSUserDefaults standardUserDefaults] setValue:maxValue forKey:@"latest_self_tweet_id"];
     });
 }
 

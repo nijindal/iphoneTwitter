@@ -1,76 +1,102 @@
 #import "ThreadManager.h"
 
 @interface ThreadManager()
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;;
+@property (nonatomic, strong) NSManagedObjectContext *coreDateWriterContext;
 @end
 
-static NSPersistentStoreCoordinator *persistentStoreCoordinator = nil;
-static NSManagedObjectModel *managedObjectModel = nil;
-static NSManagedObjectContext *coreDateWriterContext = nil ;
-static NSManagedObjectContext *mainThreadContext = nil ;
-static dispatch_queue_t backgroundQueue = nil;
+static ThreadManager *sharedInstance = nil;
 
 @implementation ThreadManager
 
-+ (dispatch_queue_t) backgroundQueue
++ (ThreadManager *) sharedInstance
 {
-    if(backgroundQueue){
-        return backgroundQueue;
+    if (!sharedInstance) {
+        sharedInstance = [[[self class] alloc] init];
     }
-    backgroundQueue = dispatch_queue_create("CoreDataWriter", DISPATCH_QUEUE_SERIAL);
-    return backgroundQueue;
+    return sharedInstance;
 }
 
-+ (NSManagedObjectContext *) CoreDateWriterContext
+- (NSManagedObjectContext *)createInMemoryStoreContext
 {
-    if(coreDateWriterContext) {
-        return coreDateWriterContext;
+    NSManagedObjectContext *tempMoc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+    [coordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:nil];
+    tempMoc.persistentStoreCoordinator = coordinator;
+    return tempMoc;
+}
+
+- (NSManagedObjectContext *) coreDateWriterContext
+{
+    if(_coreDateWriterContext) {
+        return _coreDateWriterContext;
     }
-    dispatch_sync([self backgroundQueue], ^{
-        coreDateWriterContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [coreDateWriterContext setPersistentStoreCoordinator:[self getPersistentStoreCoordinator]];
-    });
-    return coreDateWriterContext;
+    _coreDateWriterContext = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSPrivateQueueConcurrencyType];
+    [_coreDateWriterContext setPersistentStoreCoordinator: self.persistentStoreCoordinator];
+    return _coreDateWriterContext;
 }
 
-+ (NSManagedObjectContext *) mainThreadContext
+- (NSManagedObjectContext *) coreDataWriterInterface
 {
-    if(mainThreadContext) return mainThreadContext;
-    mainThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    [mainThreadContext setPersistentStoreCoordinator: [self getPersistentStoreCoordinator]];
-    
-    return mainThreadContext;
+    if(_coreDataWriterInterface) return _coreDataWriterInterface;
+    _coreDataWriterInterface = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSPrivateQueueConcurrencyType];
+    _coreDataWriterInterface.parentContext = self.mainThreadContext;
+    return _coreDataWriterInterface;
 }
 
-+ (NSPersistentStoreCoordinator *) getPersistentStoreCoordinator
+- (void) writeChangeToCoreData
 {
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
+    [[self mainThreadContext] performBlock:^{
+        NSError *error;
+        [[self mainThreadContext] save :&error];
+        [self.coreDateWriterContext performBlock:^{
+            NSError *error = nil;
+            [self.coreDateWriterContext save: &error];
+        }];
+    }];
+}
+
+- (NSManagedObjectContext *) CoreDateReaderInterface
+{
+    NSManagedObjectContext *tmpContext = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSPrivateQueueConcurrencyType];
+    tmpContext.parentContext = self.mainThreadContext;
+    return tmpContext;
+}
+
+- (NSManagedObjectContext *) mainThreadContext
+{
+    if(_mainThreadContext) return _mainThreadContext;
+    _mainThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _mainThreadContext.parentContext = self.coreDateWriterContext;
+    return _mainThreadContext;
+}
+
+- (NSPersistentStoreCoordinator *) persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Tweets.sqlite"];
     
     NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Error Occured %@", error);
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
     }
-    
-    return persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
-+ (NSManagedObjectModel *)managedObjectModel
+- (NSManagedObjectModel *)managedObjectModel
 {
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TweetsAppDelegate" withExtension:@"momd"];
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return managedObjectModel;
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
 }
 
-
-
-+ (NSURL *)applicationDocumentsDirectory
+- (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
