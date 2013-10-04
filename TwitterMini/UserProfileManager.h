@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "User+Create.h"
 
+typedef void (^successBlock) (User *owner);
 @interface UserProfileManager : NSObject
-+ (User *) ownerProfile;
++ (void) fetchOwnerProfileWithSuccessHandler: (successBlock) postFetch;
 @end

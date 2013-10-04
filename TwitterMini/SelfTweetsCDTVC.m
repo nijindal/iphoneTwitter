@@ -1,7 +1,7 @@
-
 #import "SelfTweetsCDTVC.h"
 #import "Tweet+create.h"
 #import "ThreadManager.h"
+#import "ApiManager.h"
 
 @interface SelfTweetsCDTVC()
 @property (nonatomic, strong) NSManagedObjectContext *mainMoc;
@@ -28,13 +28,15 @@
 - (void) fetchData
 {
     dispatch_async(GCDBackgroundThread, ^{
-        NSArray *queryResponse = [[FHSTwitterEngine sharedEngine] getTimelineForUser:self.designatedUser.handle isID:NO count:25 sinceID:nil maxID:nil];
-        queryResponse = [ApiUtil changeTweetsArray: queryResponse];
-        for (NSDictionary *tweet in  queryResponse) {
-            [self.mainMoc performBlockAndWait:^{
-                [Tweet tweetWithData:tweet inManagedObjectContext: self.mainMoc];
-            }];
-        }
+        [[ApiManager sharedInstance] fetchTimelineForUser:self.designatedUser.handle count:25 sinceID:nil maxID:nil onSuccess: ^(id responseObject){
+            NSLog(@"response Object %@", responseObject);
+            responseObject = [ApiUtil changeTweetsArray: responseObject];
+            for (NSDictionary *tweet in  responseObject) {
+                [self.mainMoc performBlockAndWait:^{
+                    [Tweet tweetWithData:tweet inManagedObjectContext: self.mainMoc];
+                }];
+            }
+        }];
     });
 }
 

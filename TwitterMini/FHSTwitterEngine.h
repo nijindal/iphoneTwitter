@@ -80,6 +80,8 @@ extern NSString * const FHSErrorDomain;
 
 @interface FHSTwitterEngine : NSObject
 
+- (void)signRequest:(NSMutableURLRequest *)request;
+
 //
 // REST API
 //

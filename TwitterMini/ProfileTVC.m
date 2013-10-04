@@ -28,11 +28,12 @@
     [super viewDidLoad];
     if(!self.user) {
         dispatch_async(GCDBackgroundThread, ^{
-            User *user = [UserProfileManager ownerProfile];
-            dispatch_async(GCDMainThread, ^{
-                self.user = (User *)[[[ThreadManager sharedInstance] mainThreadContext] objectWithID:[user objectID]];
-                [self populateProfile: self.user];
-            });
+            [UserProfileManager fetchOwnerProfileWithSuccessHandler:^(User *user) {
+                dispatch_async(GCDMainThread, ^{
+                    self.user = (User *)[[[ThreadManager sharedInstance] mainThreadContext] objectWithID:[user objectID]];
+                    [self populateProfile: self.user];
+                });
+            }];
         });
     } else {
         [self populateProfile:self.user];

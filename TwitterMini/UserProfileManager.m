@@ -1,48 +1,55 @@
 
 #import "UserProfileManager.h"
 #import "ThreadManager.h"
-#import "FHSTwitterEngine.h"
+#import "ApiManager.h"
 
 static User *owner = nil;
 
 @implementation UserProfileManager
 
-+ (User *) ownerProfile
++ (void) fetchOwnerProfileWithSuccessHandler: (successBlock) postFetch
 {
     if(owner) {
-        return owner;
+        postFetch(owner);
+        return;
     }
-    [self fetchFromCoreData];
-    if(owner) {
-        return owner;
-    }
-    [self fetchAndUpdateOwner];
-    return owner;
+    //TODO: Find a better pattern to handle this case. async will make it ever more dirty..
+    [self fetchFromCoreDataAndOnSuccess: postFetch onFailure: ^{
+        [self fetchOwnerAndOnFetch: postFetch];
+    }];
+    
 }
 
-+ (void) fetchAndUpdateOwner
++ (void) fetchOwnerAndOnFetch: (successBlock) postFetch
 {
-    id profile = [[FHSTwitterEngine sharedEngine] verifyCredentials];
-    [[[ThreadManager sharedInstance] coreDataWriterInterface] performBlockAndWait:^{
-        User *fetchedUser = [User UserWithData:profile inManagedObjectContext:[[ThreadManager sharedInstance] coreDataWriterInterface]];
-        fetchedUser.isOwner = YES;
-        [fetchedUser.managedObjectContext save:nil];
-        [[ThreadManager sharedInstance] writeChangeToCoreData];
-       owner = fetchedUser;
+    [[ApiManager sharedInstance] fetchProfileAndOnSuccess:^(id profile) {
+        [[[ThreadManager sharedInstance] coreDataWriterInterface] performBlock:^{
+            User *fetchedUser = [User UserWithData:profile inManagedObjectContext:[[ThreadManager sharedInstance] coreDataWriterInterface]];
+            fetchedUser.isOwner = YES;
+            [fetchedUser.managedObjectContext save:nil];
+            [[ThreadManager sharedInstance] writeChangeToCoreData];
+            owner = fetchedUser;
+            postFetch(owner);
+        }];
+    } onFailure:^(NSError *error) {
+        NSLog(@"Error occured: %@", error);
     }];
 }
 
-+ (void) fetchFromCoreData
++ (void) fetchFromCoreDataAndOnSuccess: (successBlock) postFetch onFailure: (void (^) (void)) failHandler
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
     NSManagedObjectContext *reader = [[ThreadManager sharedInstance] CoreDateReaderInterface];
     request.predicate = [NSPredicate predicateWithFormat:@"isOwner == YES"];
     __block NSError *error = nil;
     
-    [reader performBlockAndWait:^{
+    [reader performBlock:^{
         NSArray *matches = [reader executeFetchRequest:request error:&error];
         if (matches && ([matches count] == 1)) {
             owner = [matches lastObject];
+            postFetch(owner);
+        } else {
+            failHandler();
         }
     }];
 }

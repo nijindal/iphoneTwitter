@@ -1,20 +1,12 @@
-//
-//  TweetCreatorViewController.m
-//  TwitterMini
-//
-//  Created by nikhil.ji on 23/09/13.
-//  Copyright (c) 2013 directi. All rights reserved.
-//
-
 #import "TweetCreatorViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FHSTwitterEngine.h"
+#import "ApiManager.h"
 #import "ThreadManager.h"
 
 @interface TweetCreatorViewController ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *tweetArea;
 - (IBAction)sendTweet:(UIBarButtonItem *)sender;
-@property (weak, nonatomic) IBOutlet UILabel *placeHolder;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sendButton;
 @property (nonatomic) int count;
 - (IBAction)dismissModal:(UIBarButtonItem *)sender;
@@ -25,10 +17,10 @@
 
 - (void) viewDidLoad
 {
+    [super viewDidLoad];
     [[self.tweetArea layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.tweetArea layer] setBorderWidth:2.3];
 }
-
 
 - (void) textViewDidChange:(UITextView *)textView
 {
@@ -43,13 +35,14 @@
         return;
     }
     dispatch_async(GCDBackgroundThread, ^{
-        NSError *error = [[FHSTwitterEngine sharedEngine] postTweet: tweetText];
         self.sendButton.enabled = NO;
-        if(!error) {
-            dispatch_async(GCDMainThread, ^{
-                [self dismissViewControllerAnimated:YES completion:nil];
-            });
-        }
+        [[ApiManager sharedInstance] postTweet:tweetText
+                                     onSuccess:^(id responseObject) {
+                                         self.sendButton.enabled = YES;
+                                         [self dismissViewControllerAnimated:YES completion:nil];
+                                     } onFailure:^(NSError *error) {
+                                         self.sendButton.enabled = YES;
+                                     }];
     });
     
 }

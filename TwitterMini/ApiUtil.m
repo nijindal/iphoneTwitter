@@ -1,9 +1,10 @@
 #import "ApiUtil.h"
 #import "ThreadManager.h"
-#import "FHSTwitterEngine.h"
 #import "Tweet+create.h"
+#import "ApiManager.h"
 
-#define FAIRLY_HIGH_NUMBER @99999999999999999LL;
+static NSString * const LATEST_HOME_TWEET_ID = @"latest_home_tweet_id";
+static NSString * const LAST_HOME_TWEET_ID = @"last_home_tweet_id";
 
 @implementation ApiUtil
 
@@ -33,64 +34,68 @@
     return oldData;
 }
 
-+ (void) fetchLatestTweets
++ (void) fetchLatestTweetsWithResponseHandler: (void (^) (void)) handler
 {
-    NSNumber *latestTweetId = [[NSUserDefaults standardUserDefaults] valueForKey:@"latest_home_tweet_id"];
-    NSString *latestIDString = latestTweetId ? [NSString stringWithFormat:@"%lld", [latestTweetId longLongValue]] : nil;
-    __block NSNumber *maxValue = latestTweetId ? latestTweetId : [NSNumber numberWithInt:0];
+    NSNumber *latestTweetId = [[NSUserDefaults standardUserDefaults] valueForKey: LATEST_HOME_TWEET_ID];
+    NSString *latestIDString = [latestTweetId boolValue] ? [NSString stringWithFormat:@"%lld", [latestTweetId longLongValue]] : nil;
+    __block NSNumber *maxValue = [latestTweetId boolValue] ? latestTweetId : [NSNumber numberWithInt:0];
     
-    NSNumber *lastTweetId = [[NSUserDefaults standardUserDefaults] valueForKey:@"last_home_tweet_id"];
-    __block NSNumber *minValue = lastTweetId ? lastTweetId : FAIRLY_HIGH_NUMBER;
+    NSNumber *lastTweetId = [[NSUserDefaults standardUserDefaults] valueForKey: LAST_HOME_TWEET_ID];
+    __block NSNumber *minValue = [lastTweetId boolValue] ? lastTweetId : nil;
     
-    dispatch_async(GCDBackgroundThread, ^{
-        NSArray *queryResponse = [[FHSTwitterEngine sharedEngine] getHomeTimelineSinceID:latestIDString count:25];
-        NSLog(@"%@", queryResponse);
-        NSManagedObjectContext *writer = [[ThreadManager sharedInstance] coreDataWriterInterface];
-        queryResponse = [ApiUtil changeTweetsArray: queryResponse];
-        
-        for (NSDictionary *tweet in  queryResponse) {
-            if([maxValue compare:[tweet valueForKey:@"id"]] == NSOrderedAscending){
-                maxValue = [tweet valueForKey:@"id"];
-            }
-            if ([minValue compare:[tweet valueForKey:@"id"]] == NSOrderedDescending) {
-                minValue = [tweet valueForKey:@"id"];
-            }
-            [writer performBlock:^{
-                [Tweet tweetWithData:tweet inManagedObjectContext: writer];
-                [[ThreadManager sharedInstance] writeChangeToCoreData];
-            }];
-
-        }
-        [[NSUserDefaults standardUserDefaults] setValue:maxValue forKey:@"latest_home_tweet_id"];
-        [[NSUserDefaults standardUserDefaults] setValue:minValue forKey:@"last_home_tweet_id"];
-    });
-    
+    NSLog(@"Max Value: %@, Min Value: %@", maxValue, minValue);
+    [[ApiManager sharedInstance] getHomeTimelineSinceID:latestIDString count:25
+                                            onSuccess:^(id responseObject) {
+                                                handler();
+                                                NSManagedObjectContext *writer = [[ThreadManager sharedInstance] coreDataWriterInterface];
+                                                responseObject = [ApiUtil changeTweetsArray: responseObject];
+                                                
+                                                for (NSDictionary *tweet in  responseObject) {
+                                                    if([maxValue compare:[tweet valueForKey:@"id"]] == NSOrderedAscending){
+                                                        maxValue = [tweet valueForKey:@"id"];
+                                                    }
+                                                    if (!minValue || [minValue compare:[tweet valueForKey:@"id"]] == NSOrderedDescending) {
+                                                        minValue = [tweet valueForKey:@"id"];
+                                                    }
+                                                    [writer performBlock:^{
+                                                        [Tweet tweetWithData:tweet inManagedObjectContext: writer];
+                                                        [[ThreadManager sharedInstance] writeChangeToCoreData];
+                                                    }];
+                                                }
+                                                [[NSUserDefaults standardUserDefaults] setValue:maxValue forKey: LATEST_HOME_TWEET_ID];
+                                                [[NSUserDefaults standardUserDefaults] setValue:minValue forKey: LAST_HOME_TWEET_ID];
+                                            } onFailure:^(NSError *error) {
+                                                handler();
+                                                NSLog(@"Error occured %@", error);
+                                            }];
 }
 
-+ (void) fethOldTweets
++ (void) fethOldTweetsWithResponseHandler: (void (^) (void)) handler
 {
-    NSNumber *lastTweetId = [[NSUserDefaults standardUserDefaults] valueForKey:@"last_home_tweet_id"];
-    NSString *lastIDString = lastTweetId ? [NSString stringWithFormat:@"%lld", [lastTweetId longLongValue]] : nil;
-    __block NSNumber *minValue = lastTweetId ? lastTweetId : [NSNumber numberWithInt:0];
-    
-    dispatch_async(GCDBackgroundThread, ^{
-        NSArray *queryResponse = [[FHSTwitterEngine sharedEngine] getHomeTimelineAfterID:lastIDString count:25];
-        NSManagedObjectContext *writer = [[ThreadManager sharedInstance] coreDataWriterInterface];
-        NSLog(@"%@", queryResponse);
-        
-        queryResponse = [ApiUtil changeTweetsArray: queryResponse];
-        
-        for (NSDictionary *tweet in  queryResponse) {
-            if ([minValue compare:[tweet valueForKey:@"id"]] == NSOrderedDescending) {
-                minValue = [tweet valueForKey:@"id"];
-            }
-            [writer performBlock:^{
-                [Tweet tweetWithData:tweet inManagedObjectContext: writer];
-                [[ThreadManager sharedInstance] writeChangeToCoreData];
-            }];
-        }
-        [[NSUserDefaults standardUserDefaults] setValue:minValue forKey:@"last_home_tweet_id"];
-    });
+    __block NSNumber *lastTweetId = [[NSUserDefaults standardUserDefaults] valueForKey: LAST_HOME_TWEET_ID];
+    if([lastTweetId boolValue]){
+        NSLog(@"Min Value: %@", lastTweetId);
+        NSString *lastIDString = [NSString stringWithFormat:@"%lld", [lastTweetId longLongValue]];
+        [[ApiManager sharedInstance] getHomeTimelineAfterID:lastIDString count:25
+                                                onSuccess:^(id responseObject) {
+                                                    handler();
+                                                    NSManagedObjectContext *writerContext = [[ThreadManager sharedInstance] coreDataWriterInterface];
+                                                    responseObject = [ApiUtil changeTweetsArray: responseObject];
+                                                    for (NSDictionary *tweet in  responseObject) {
+                                                        if ([lastTweetId compare:[tweet valueForKey:@"id"]] == NSOrderedDescending) {
+                                                            lastTweetId = [tweet valueForKey:@"id"];
+                                                        }
+                                                        [writerContext performBlock:^{
+                                                            [Tweet tweetWithData:tweet inManagedObjectContext: writerContext];
+                                                            [[ThreadManager sharedInstance] writeChangeToCoreData];
+                                                        }];
+                                                    }
+                                                    [[NSUserDefaults standardUserDefaults] setValue:lastTweetId forKey: LAST_HOME_TWEET_ID];
+                                                } onFailure:^(NSError *error) {
+                                                    handler();
+                                                    NSLog(@"Error occured %@", error);
+                                                }];
+    }
 }
 
 

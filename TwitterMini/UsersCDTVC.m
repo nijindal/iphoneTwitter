@@ -1,5 +1,6 @@
 #import "UsersCDTVC.h"
 #import "ProfileTVC.h"
+#import "ApiManager.h"
 
 @implementation UsersCDTVC
 
@@ -42,19 +43,23 @@
 
 - (void) fetchData {
     dispatch_async(GCDBackgroundThread, ^{
-        id requestData;
+        void (^handleResponse) (id response) = ^(id response){
+            NSArray *usersData = [response valueForKey:@"users"];
+            NSManagedObjectContext *tmpWritercontext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            tmpWritercontext.parentContext = self.mainMoc;
+            for(NSDictionary *userData in usersData) {
+                [tmpWritercontext performBlockAndWait:^{
+                    [User UserWithData: userData inManagedObjectContext: tmpWritercontext];
+                }];
+            }
+        };
+
         if([self.tableType isEqualToString: @"Followers"]) {
-            requestData = [[FHSTwitterEngine sharedEngine] listFollowersForUser:self.designatedUser.handle isID:NO withCursor:@"-1"];
+            [self setTitle:@"Followers"];
+            [[ApiManager sharedInstance] listFollowersForUser: self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:nil];
         } else {
-            requestData = [[FHSTwitterEngine sharedEngine] listFriendsForUser:self.designatedUser.handle isID:NO withCursor:@"-1"];
-        }
-        NSArray *usersData = [requestData valueForKey:@"users"];
-        NSManagedObjectContext *tmpWritercontext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        tmpWritercontext.parentContext = self.mainMoc;
-        for(NSDictionary *userData in usersData) {
-            [tmpWritercontext performBlockAndWait:^{
-                [User UserWithData: userData inManagedObjectContext: tmpWritercontext];
-            }];
+            [self setTitle:@"Following"];
+            [[ApiManager sharedInstance] listFriendsForUser:self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:nil];
         }
     });
 }

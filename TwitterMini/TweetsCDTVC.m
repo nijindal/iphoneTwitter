@@ -4,6 +4,9 @@
 #import "TweetsCell.h"
 #import "SingleTweetViewController.h"
 
+@interface TweetsCDTVC()
+@end
+
 @implementation TweetsCDTVC
 
 - (void)awakeFromNib
@@ -17,7 +20,7 @@
     [super viewDidLoad];
     UINib *tweetNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib:tweetNib forCellReuseIdentifier:@"TweetCell"];
-
+    
     [[FHSTwitterEngine sharedEngine] loadAccessToken];
     [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
     if(![[FHSTwitterEngine sharedEngine] isAuthorized]){
@@ -55,7 +58,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat cellHeight;
-    NSUInteger PADDING_TOP = 28;
+    NSUInteger PADDING_TOP = 35;
     NSUInteger HEIGHT_DATE = 30;
     NSUInteger labelWidth;
     
@@ -74,8 +77,9 @@
     UIEdgeInsets inset = scrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     float h = size.height;
+    float bufferHeigth = 2;
     
-    if(y == h) {
+    if(y + bufferHeigth >= h) {
         [self fetchOldTweets];
     }
 }
@@ -98,11 +102,13 @@
     [destinationController setTweet: tweet];
 }
 
+- (void) fetchData {}
+
+
 #pragma mark - Abstract methods.
 
 - (void) setupFetchController {}
 
-- (void) fetchData {}
 
 - (void) fetchOldTweets {}
 

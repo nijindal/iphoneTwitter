@@ -10,7 +10,6 @@
 #import "User+Create.h"
 #import "ThreadManager.h"
 #import "UserProfileManager.h"
-#import "FHSTwitterEngine.h"
 
 @interface UsersCDTVC : CoreDataTableViewController
 

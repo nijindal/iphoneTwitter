@@ -273,6 +273,7 @@ id removeNull(id rootObject) {
 
 @end
 
+
 @implementation NSString (FHSTwitterEngine)
 
 - (NSString *)fhs_URLEncode {
@@ -1310,7 +1311,7 @@ id removeNull(id rootObject) {
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    NSString* responseString = [NSString stringWithUTF8String:[data bytes]];
+    NSString* responseString = data ? [NSString stringWithUTF8String:[data bytes]] : @"No data Returned";
     NSLog(@"response of request: %@", responseString);
 
     if (error) {

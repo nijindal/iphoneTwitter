@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFNetworking/AFNetworking.h"
 
 @interface ApiUtil : NSObject
 
@@ -14,8 +15,8 @@
 
 + (NSArray *) changeTweetsArray: (NSArray *) rawData;
 
-+ (void) fetchLatestTweets;
++ (void) fetchLatestTweetsWithResponseHandler: (void (^) (void)) handler;
 
-+ (void) fethOldTweets;
++ (void) fethOldTweetsWithResponseHandler: (void (^) (void)) handler;
 
 @end
