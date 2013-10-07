@@ -57,10 +57,14 @@
 
         if([self.tableType isEqualToString: @"Followers"]) {
             [self setTitle:@"Followers"];
-            [[ApiManager sharedInstance] listFollowersForUser: self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:nil];
+            [[ApiManager sharedInstance] listFollowersForUser: self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:^(NSError *error){
+                NSLog(@"Error Occured %@", error);
+            }];
         } else {
             [self setTitle:@"Following"];
-            [[ApiManager sharedInstance] listFriendsForUser:self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:nil];
+            [[ApiManager sharedInstance] listFriendsForUser:self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:^(NSError *error){
+                NSLog(@"Error Occured %@", error);
+            }];
         }
     });
 }

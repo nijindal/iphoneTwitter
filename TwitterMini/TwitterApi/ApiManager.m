@@ -85,6 +85,11 @@ static ApiManager *sharedInstance = nil;
 - (void)fetchTimelineForUser:(NSString *)user count:(int)count sinceID:(NSString *)sinceID maxID:(NSString *)maxID onSuccess: (onSuccessBlock) success;
 {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if(!user.length) {
+        NSLog(@"User Handle is required to fetch tweets.");
+        return;
+    }
+    params[@"screen_name"] = user;
     if(count > 0) {
         params[@"count"] = [NSString stringWithFormat:@"%d",count];
     }
@@ -100,13 +105,13 @@ static ApiManager *sharedInstance = nil;
 - (void)listFollowersForUser:(NSString *)user withCursor:(NSString *)cursor onSuccess: (onSuccessBlock) success onFailure:(onErrorBlock)failure
 {
     NSDictionary *params = @{@"skip_status":@"true", @"include_entities":@"false", @"screen_name":user, @"cursor": cursor};
-    [self sendGETHttpRequest:url_followers_list withParams:params onSuccess:success onfailure:nil];
+    [self sendGETHttpRequest:url_followers_list withParams:params onSuccess:success onfailure: failure];
 }
 
 - (void)listFriendsForUser:(NSString *)user withCursor:(NSString *)cursor onSuccess: (onSuccessBlock) success onFailure:(onErrorBlock)failure
 {
     NSDictionary *params = @{@"skip_status":@"true", @"include_entities":@"false", @"screen_name":user, @"cursor": cursor};
-    [self sendGETHttpRequest:url_friends_list withParams:params onSuccess:success onfailure:nil];
+    [self sendGETHttpRequest:url_friends_list withParams:params onSuccess:success onfailure: failure];
 }
 
 
