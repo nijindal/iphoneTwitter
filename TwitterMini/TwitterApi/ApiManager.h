@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @interface ApiManager : NSObject
-
-typedef void (^onSuccessBlock) (id responseObject);
-typedef void (^onErrorBlock) (NSError *error);
 
 + (ApiManager *) sharedInstance;
 

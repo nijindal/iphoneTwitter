@@ -38,18 +38,6 @@ static ApiManager *sharedInstance = nil;
         return uuid;
     }
 }
-
-- (BOOL)fhs_isNumeric {
-	const char *raw = (const char *)[self UTF8String];
-    
-	for (int i = 0; i < strlen(raw); i++) {
-		if (raw[i] < '0' || raw[i] > '9') {
-            return NO;
-        }
-	}
-	return YES;
-}
-
 @end
 
 @implementation ApiManager
@@ -238,7 +226,5 @@ static ApiManager *sharedInstance = nil;
     }];
     [operation start];
 }
-
-
 
 @end

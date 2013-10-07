@@ -1,0 +1,30 @@
+//
+//  User.m
+//  TwitterMini
+//
+//  Created by nikhil.ji on 07/10/13.
+//  Copyright (c) 2013 directi. All rights reserved.
+//
+
+#import "UserObject.h"
+
+@implementation UserObject
+
+- (UserObject *) initWithApiData: (NSDictionary *) userData
+{
+    self =  [self init];
+    self.name = [[userData valueForKey:@"name"] description];
+    self.handle = [[userData valueForKey:@"screen_name"] description];
+    self.desc = [[userData valueForKey:@"description"] description];
+    self.image_url = [[userData valueForKey:@"profile_image_url"] description];
+    self.followers_count = [userData valueForKey:@"followers_count"];
+    self.friends_count = [userData valueForKey:@"friends_count"];
+    self.banner_url = [[userData valueForKey:@"profile_banner_url"] description];
+    self.tweet_count = [userData valueForKey:@"statuses_count"];
+    self.id = [userData valueForKey:@"id"];
+    //TODO : Make it Asynchronous and make everyone else Observe this value.
+    self.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString: self.image_url]];
+    return self;
+}
+
+@end

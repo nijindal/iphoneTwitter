@@ -1,8 +1,7 @@
 #import "HomeTweetsCDTVC.h"
 #import "Tweet+create.h"
 #import "ThreadManager.h"
-#import "ApiUtil.h"
-#import "ApiManager.h"
+#import "ApiInterface.h"
 
 @interface HomeTweetsCDTVC()<FHSTwitterEngineAccessTokenDelegate>
 @property (nonatomic) BOOL hasRequestedOldTweets;
@@ -13,7 +12,7 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [self fetchData];
+    [self fetchNewTweets];
 }
 
 - (void) setupFetchController
@@ -23,15 +22,27 @@
     self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext: [[ThreadManager sharedInstance] mainThreadContext] sectionNameKeyPath:nil cacheName:nil];
 }
 
-- (void) fetchData
+- (void) fetchNewTweets
 {
     dispatch_async(GCDBackgroundThread, ^{
-        [ApiUtil fetchLatestTweetsWithResponseHandler:^{
+        [[ApiInterface sharedInstance] fetchLatestTweetsWithResponseHandler:^(NSArray *tweetsArray) {
             dispatch_async(GCDMainThread, ^{
                 [self.refreshControl endRefreshing];
             });
+            [self saveTweetsToCoreData: tweetsArray];
         }];
     });
+}
+
+- (void) saveTweetsToCoreData : (NSArray *) tweetsArray
+{
+    NSManagedObjectContext *writerContext = [[ThreadManager sharedInstance] coreDataWriterInterface];
+    for (TweetObject *tweetObject in  tweetsArray) {
+        [writerContext performBlock:^{
+            [Tweet tweetWithObject:tweetObject inManagedObjectContext: writerContext];
+            [[ThreadManager sharedInstance] writeChangeToCoreData];
+        }];
+    }
 }
 
 - (void) fetchOldTweets
@@ -39,8 +50,9 @@
     if(!self.hasRequestedOldTweets) {
         dispatch_async(GCDBackgroundThread, ^{
             self.hasRequestedOldTweets = YES;
-            [ApiUtil fethOldTweetsWithResponseHandler: ^{
+            [[ApiInterface sharedInstance] fetchOldTweetsWithResponseHandler:^(NSArray *tweetsArray) {
                 self.hasRequestedOldTweets = NO;
+                [self saveTweetsToCoreData:tweetsArray];
             }];
         });
     }

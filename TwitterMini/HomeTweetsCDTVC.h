@@ -1,5 +1,5 @@
 #import "TweetsCDTVC.h"
 
 @interface HomeTweetsCDTVC : TweetsCDTVC
-- (void) fetchData;
+- (void) fetchNewTweets;
 @end

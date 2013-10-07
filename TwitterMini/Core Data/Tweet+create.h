@@ -7,9 +7,10 @@
 //
 
 #import "Tweet.h"
+#import "TweetObject.h"
 
 @interface Tweet (create)
 
-+ (Tweet*) tweetWithData: (NSDictionary *)data inManagedObjectContext: (NSManagedObjectContext *) context;
++ (Tweet*) tweetWithObject: (TweetObject *)data inManagedObjectContext: (NSManagedObjectContext *) context;
 
 @end

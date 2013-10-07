@@ -22,10 +22,10 @@
     [self.tableView registerNib:tweetNib forCellReuseIdentifier:@"TweetCell"];
     
     [[FHSTwitterEngine sharedEngine] loadAccessToken];
-    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchNewTweets) forControlEvents:UIControlEventValueChanged];
     if(![[FHSTwitterEngine sharedEngine] isAuthorized]){
         [[FHSTwitterEngine sharedEngine] showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
-            if(success) [self fetchData];
+            if(success) [self fetchNewTweets];
         }];
     }
 }
@@ -77,7 +77,7 @@
     UIEdgeInsets inset = scrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     float h = size.height;
-    float bufferHeigth = 2;
+    float bufferHeigth = 5;
     
     if(y + bufferHeigth >= h) {
         [self fetchOldTweets];
@@ -102,15 +102,12 @@
     [destinationController setTweet: tweet];
 }
 
-- (void) fetchData {}
-
-
 #pragma mark - Abstract methods.
+
+- (void) fetchNewTweets {}
 
 - (void) setupFetchController {}
 
-
 - (void) fetchOldTweets {}
-
 
 @end

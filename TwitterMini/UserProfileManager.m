@@ -2,6 +2,7 @@
 #import "UserProfileManager.h"
 #import "ThreadManager.h"
 #import "ApiManager.h"
+#import "UserObject.h"
 
 static User *owner = nil;
 
@@ -23,8 +24,9 @@ static User *owner = nil;
 + (void) fetchOwnerAndOnFetch: (successBlock) postFetch
 {
     [[ApiManager sharedInstance] fetchProfileAndOnSuccess:^(id profile) {
+        UserObject *userObject = [[UserObject alloc] initWithApiData:profile];
         [[[ThreadManager sharedInstance] coreDataWriterInterface] performBlock:^{
-            User *fetchedUser = [User UserWithData:profile inManagedObjectContext:[[ThreadManager sharedInstance] coreDataWriterInterface]];
+            User *fetchedUser = [User UserWithObject:userObject inManagedObjectContext:[[ThreadManager sharedInstance] coreDataWriterInterface]];
             fetchedUser.isOwner = YES;
             [fetchedUser.managedObjectContext save:nil];
             [[ThreadManager sharedInstance] writeChangeToCoreData];

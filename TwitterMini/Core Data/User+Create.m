@@ -12,12 +12,12 @@
 
 @implementation User (Create)
 
-+ (User *) UserWithData: (NSDictionary *)data inManagedObjectContext: (NSManagedObjectContext *) context
++ (User *) UserWithObject: (UserObject *)object inManagedObjectContext: (NSManagedObjectContext *) context;
 {
     User *user = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]];
-    request.predicate = [NSPredicate predicateWithFormat:@"id == %@", [data valueForKey:@"id"]];
+    request.predicate = [NSPredicate predicateWithFormat:@"id == %@", object.id];
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
@@ -25,16 +25,16 @@
         //handle error.
     } else if (![matches count]) {
         user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-        user.name = [[data valueForKey:@"name"] description];
-        user.handle = [[data valueForKey:@"screen_name"] description];
-        user.desc = [[data valueForKey:@"description"] description];
-        user.image_url = [[data valueForKey:@"profile_image_url"] description];
-        user.followers_count = [data valueForKey:@"followers_count"] ;
-        user.friends_count = [data valueForKey:@"friends_count"];
-        user.banner_url = [[data valueForKey:@"profile_banner_url"] description];
-        user.tweet_count = [data valueForKey:@"statuses_count"];
-        user.id = [data valueForKey:@"id"];
-        user.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString: user.image_url]];
+        user.name = object.name;
+        user.handle = object.handle;
+        user.desc = object.desc;
+        user.image_url = object.image_url;
+        user.followers_count = object.followers_count;
+        user.friends_count = object.friends_count;
+        user.banner_url = object.banner_url;
+        user.tweet_count = object.tweet_count;
+        user.id = object.id;
+        user.image_data = object.image_data;
         [context save:nil];
     } else {
         user = [matches lastObject];

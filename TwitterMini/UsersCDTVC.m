@@ -1,6 +1,6 @@
 #import "UsersCDTVC.h"
 #import "ProfileTVC.h"
-#import "ApiManager.h"
+#import "ApiInterface.h"
 
 @implementation UsersCDTVC
 
@@ -44,25 +44,24 @@
 
 - (void) fetchData {
     dispatch_async(GCDBackgroundThread, ^{
-        void (^handleResponse) (id response) = ^(id response){
-            NSArray *usersData = [response valueForKey:@"users"];
+        void (^handleResponse) (NSArray *usersArray) = ^(NSArray *usersArray){
             NSManagedObjectContext *tmpWritercontext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
             tmpWritercontext.parentContext = self.mainMoc;
-            for(NSDictionary *userData in usersData) {
-                [tmpWritercontext performBlockAndWait:^{
-                    [User UserWithData: userData inManagedObjectContext: tmpWritercontext];
+            for(UserObject *userObject in usersArray) {
+                [tmpWritercontext performBlock:^{
+                    [User UserWithObject:userObject inManagedObjectContext:tmpWritercontext];
                 }];
             }
         };
 
         if([self.tableType isEqualToString: @"Followers"]) {
             [self setTitle:@"Followers"];
-            [[ApiManager sharedInstance] listFollowersForUser: self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:^(NSError *error){
+            [[ApiInterface sharedInstance] listFollowersForUser: self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:^(NSError *error){
                 NSLog(@"Error Occured %@", error);
             }];
         } else {
             [self setTitle:@"Following"];
-            [[ApiManager sharedInstance] listFriendsForUser:self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:^(NSError *error){
+            [[ApiInterface sharedInstance] listFriendsForUser:self.designatedUser.handle withCursor:@"-1" onSuccess:handleResponse onFailure:^(NSError *error){
                 NSLog(@"Error Occured %@", error);
             }];
         }

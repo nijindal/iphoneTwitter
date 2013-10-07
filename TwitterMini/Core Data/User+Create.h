@@ -7,9 +7,10 @@
 //
 
 #import "User.h"
+#import "UserObject.h"
 
 @interface User (Create)
 
-+ (User *) UserWithData: (NSDictionary *)data inManagedObjectContext: (NSManagedObjectContext *) context;
++ (User *) UserWithObject: (UserObject *)data inManagedObjectContext: (NSManagedObjectContext *) context;
 
 @end

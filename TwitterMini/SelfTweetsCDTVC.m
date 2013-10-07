@@ -1,7 +1,8 @@
 #import "SelfTweetsCDTVC.h"
 #import "Tweet+create.h"
 #import "ThreadManager.h"
-#import "ApiManager.h"
+#import "ApiInterface.h"
+#import "TweetObject.h"
 
 @interface SelfTweetsCDTVC()
 @property (nonatomic, strong) NSManagedObjectContext *mainMoc;
@@ -14,7 +15,7 @@
     [super viewDidLoad];
     if(!self.mainMoc){
         self.mainMoc = [[ThreadManager sharedInstance] createInMemoryStoreContext];
-        [self fetchData];
+        [self fetchNewTweets];
     }
 }
 
@@ -25,17 +26,15 @@
     self.fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext: self.mainMoc sectionNameKeyPath:nil cacheName:nil];
 }
 
-- (void) fetchData
+- (void) fetchNewTweets
 {
     dispatch_async(GCDBackgroundThread, ^{
-        [[ApiManager sharedInstance] fetchTimelineForUser:self.designatedUser.handle count:25 sinceID:nil maxID:nil onSuccess: ^(id responseObject){
-            NSLog(@"response Object %@", responseObject);
-            responseObject = [ApiUtil changeTweetsArray: responseObject];
-            for (NSDictionary *tweet in  responseObject) {
-                [self.mainMoc performBlockAndWait:^{
-                    [Tweet tweetWithData:tweet inManagedObjectContext: self.mainMoc];
-                }];
-            }
+        [[ApiInterface sharedInstance] fetchTimelineForUser:self.designatedUser.handle count:25 sinceID:nil maxID:nil onSuccess: ^(NSArray *tweetsArray){
+            [self.mainMoc performBlock:^{
+                for (TweetObject *tweetObject in  tweetsArray) {
+                    [Tweet tweetWithObject: tweetObject inManagedObjectContext: self.mainMoc];
+                }
+            }];
         }];
     });
 }
