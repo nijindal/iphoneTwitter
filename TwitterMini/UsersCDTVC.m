@@ -24,7 +24,8 @@
     User *user = [self.fetchResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = user.name;
     cell.detailTextLabel.text = user.handle;
-    [cell.imageView setImage:[UIImage imageWithData:user.image_data]];
+    UIImage *avatar = [UIImage imageWithData:user.image_data] ?: [UIImage imageNamed:@"default-avatar"];
+    [cell.imageView setImage:avatar];
     return cell;
 }
 

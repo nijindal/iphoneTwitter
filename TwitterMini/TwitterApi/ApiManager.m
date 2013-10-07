@@ -10,6 +10,7 @@
 #import "FHSTwitterEngine.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFURLRequestSerialization.h"
+#import "ThreadManager.h"
 
 static NSString * const url_statuses_home_timeline = @"https://api.twitter.com/1.1/statuses/home_timeline.json";
 static NSString * const url_statuses_user_timeline = @"https://api.twitter.com/1.1/statuses/user_timeline.json";
@@ -156,9 +157,13 @@ static ApiManager *sharedInstance = nil;
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response Received: %@", responseObject);
-        success(responseObject);
+        dispatch_async(GCDBackgroundThread, ^{
+            success(responseObject);
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        failure(error);
+        dispatch_async(GCDBackgroundThread, ^{
+            failure(error);
+        });
     }];
     [operation start];
 }
@@ -167,20 +172,16 @@ static ApiManager *sharedInstance = nil;
                    onfailure:(onErrorBlock)failure
 
 {
-
-    //TODO: investigate it further why AFResquest isnt working.
+//TODO: investigate it further why AFResquest isnt working.
 //    AFHTTPRequestSerializer *requester = [[AFHTTPRequestSerializer alloc] init];
 //    NSMutableURLRequest *request = [requester multipartFormRequestWithMethod:@"POST" URLString: requestString parameters: @{@"status": @"ignore"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //        NSLog(@"%@", formData);
 //        [formData appendPartWithFormData:[[NSString stringWithFormat:@"%@", @"ignore"] dataUsingEncoding:NSUTF8StringEncoding] name:@"status"];
 //    }];
 //    [[FHSTwitterEngine sharedEngine] signRequest:request];
-
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f];
     
-
-
     [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:NO];
     
@@ -222,9 +223,13 @@ static ApiManager *sharedInstance = nil;
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response Received: %@", responseObject);
-        success(responseObject);
+        dispatch_async(GCDBackgroundThread, ^{
+            success(responseObject);
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        failure(error);
+        dispatch_async(GCDBackgroundThread, ^{
+            failure(error);
+        });
     }];
     [operation start];
 }
