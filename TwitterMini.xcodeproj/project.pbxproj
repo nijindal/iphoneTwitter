@@ -17,6 +17,8 @@
 		B62A8A9C17F313F900117751 /* UserProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B62A8A9B17F313F900117751 /* UserProfileManager.m */; };
 		B66D2B9B17EAF22D0097A64E /* SingleTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66D2B9A17EAF22D0097A64E /* SingleTweetViewController.m */; };
 		B66D2B9E17EAFA2B0097A64E /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B66D2B9D17EAFA2B0097A64E /* Util.m */; };
+		B67C92C3180442020023A0AB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67C92C2180442020023A0AB /* LoginViewController.m */; };
+		B67C92C518044F980023A0AB /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = B67C92C418044F980023A0AB /* splash.png */; };
 		B683D62B17F4D2C700156C6A /* icon_home.png in Resources */ = {isa = PBXBuildFile; fileRef = B683D62A17F4D2C700156C6A /* icon_home.png */; };
 		B683D62D17F4D37E00156C6A /* profile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B683D62C17F4D37E00156C6A /* profile_icon.png */; };
 		B683D62F17F4D5AB00156C6A /* compose_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B683D62E17F4D5AB00156C6A /* compose_icon.png */; };
@@ -82,6 +84,9 @@
 		B66D2B9A17EAF22D0097A64E /* SingleTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTweetViewController.m; sourceTree = "<group>"; };
 		B66D2B9C17EAFA2B0097A64E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = views/Util.h; sourceTree = "<group>"; };
 		B66D2B9D17EAFA2B0097A64E /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = views/Util.m; sourceTree = "<group>"; };
+		B67C92C1180442020023A0AB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B67C92C2180442020023A0AB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B67C92C418044F980023A0AB /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		B683D62A17F4D2C700156C6A /* icon_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_home.png; sourceTree = "<group>"; };
 		B683D62C17F4D37E00156C6A /* profile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_icon.png; sourceTree = "<group>"; };
 		B683D62E17F4D5AB00156C6A /* compose_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose_icon.png; sourceTree = "<group>"; };
@@ -184,6 +189,8 @@
 				B617452517F07FDE00DB038C /* TweetCreatorViewController.m */,
 				B62A8A8F17F30A5800117751 /* ProfileTVC.h */,
 				B62A8A9017F30A5800117751 /* ProfileTVC.m */,
+				B67C92C1180442020023A0AB /* LoginViewController.h */,
+				B67C92C2180442020023A0AB /* LoginViewController.m */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -354,6 +361,7 @@
 		B6EE9DB417E21DA000D3F287 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B67C92C418044F980023A0AB /* splash.png */,
 				B683D62A17F4D2C700156C6A /* icon_home.png */,
 				B683D63017F5745A00156C6A /* default-avatar.png */,
 				B683D62E17F4D5AB00156C6A /* compose_icon.png */,
@@ -450,6 +458,7 @@
 				B69F1BD117DBA3B700C81DB9 /* Default.png in Resources */,
 				B69F1BD317DBA3B700C81DB9 /* Default@2x.png in Resources */,
 				B69F1BD517DBA3B700C81DB9 /* Default-568h@2x.png in Resources */,
+				B67C92C518044F980023A0AB /* splash.png in Resources */,
 				B69F1BD817DBA3B700C81DB9 /* MainStoryboard.storyboard in Resources */,
 				B6EE9DC417E314AF00D3F287 /* TweetCell.xib in Resources */,
 				B683D62B17F4D2C700156C6A /* icon_home.png in Resources */,
@@ -491,6 +500,7 @@
 				B6EE877C180325030006684A /* ApiInterface.m in Sources */,
 				B6FD5CDF17FD5A0200809500 /* AFHTTPRequestOperationManager.m in Sources */,
 				B6FD5CE417FD5A0200809500 /* AFURLRequestSerialization.m in Sources */,
+				B67C92C3180442020023A0AB /* LoginViewController.m in Sources */,
 				B6EE9DC017E30ACD00D3F287 /* HomeTweetsCDTVC.m in Sources */,
 				B625C79F17E756BA007775F2 /* FHSTwitterEngine.m in Sources */,
 				B625C7D917E9E4F8007775F2 /* ThreadManager.m in Sources */,

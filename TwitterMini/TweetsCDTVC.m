@@ -9,40 +9,17 @@
 
 @implementation TweetsCDTVC
 
-- (void)awakeFromNib
-{
-    [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:@"W7z7KpZNxVxD3UnUHVBdnQ" andSecret:@"EmR8ldrd1mtNSvDcl307LfpMAAdq9Nhqa8acNLI84"];
-    [[FHSTwitterEngine sharedEngine] setDelegate:self];
-}
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     UINib *tweetNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib:tweetNib forCellReuseIdentifier:@"TweetCell"];
-    
-    [[FHSTwitterEngine sharedEngine] loadAccessToken];
     [self.refreshControl addTarget:self action:@selector(fetchNewTweets) forControlEvents:UIControlEventValueChanged];
-    if(![[FHSTwitterEngine sharedEngine] isAuthorized]){
-        [[FHSTwitterEngine sharedEngine] showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
-            if(success) [self fetchNewTweets];
-        }];
-    }
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupFetchController];
-}
-
-- (NSString *)loadAccessToken
-{
-    return [[NSUserDefaults standardUserDefaults]objectForKey:@"SavedAccessHTTPBody"];
-}
-
-- (void)storeAccessToken:(NSString *)accessToken
-{
-    [[NSUserDefaults standardUserDefaults]setObject:accessToken forKey:@"SavedAccessHTTPBody"];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

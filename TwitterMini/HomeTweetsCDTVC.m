@@ -3,7 +3,7 @@
 #import "ThreadManager.h"
 #import "ApiInterface.h"
 
-@interface HomeTweetsCDTVC()<FHSTwitterEngineAccessTokenDelegate>
+@interface HomeTweetsCDTVC()
 @property (nonatomic) BOOL hasRequestedOldTweets;
 @end
 

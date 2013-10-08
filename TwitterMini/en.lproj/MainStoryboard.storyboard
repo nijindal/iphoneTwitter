@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wxv-YP-RXp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CUI-Tf-9ko">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -34,12 +34,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJs-ad-cCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5240" y="-305"/>
+            <point key="canvasLocation" x="-4280" y="-245"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cEr-pP-eVZ">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="wxv-YP-RXp" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="InitialController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wxv-YP-RXp" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Uju-PT-DS0"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="DE9-g0-ZaZ">
@@ -54,7 +54,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgR-9H-e47" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7046" y="-600"/>
+            <point key="canvasLocation" x="-6166" y="-552"/>
         </scene>
         <!--Navigation Controller - Profile-->
         <scene sceneID="mGz-mm-fi6">
@@ -70,7 +70,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGE-H0-yFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6442" y="-67"/>
+            <point key="canvasLocation" x="-5482" y="-7"/>
         </scene>
         <!--ProfileTVC - Profile-->
         <scene sceneID="oy0-6n-1KR">
@@ -219,7 +219,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZP-Rd-bZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5892" y="-75"/>
+            <point key="canvasLocation" x="-4932" y="-15"/>
         </scene>
         <!--UsersCDTVC - Following-->
         <scene sceneID="cMk-tR-5H3">
@@ -264,7 +264,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujN-8y-2jA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5240" y="319"/>
+            <point key="canvasLocation" x="-4280" y="379"/>
         </scene>
         <!--Single Tweet View Controller - Tweet-->
         <scene sceneID="GXe-rn-pq7">
@@ -348,7 +348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfa-LN-3D9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4469" y="-468"/>
+            <point key="canvasLocation" x="-3509" y="-408"/>
         </scene>
         <!--Home TweetsCDTVC - Home-->
         <scene sceneID="8tv-aD-qWz">
@@ -386,7 +386,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHt-rh-zZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5298" y="-1065"/>
+            <point key="canvasLocation" x="-4338" y="-1005"/>
         </scene>
         <!--Tweet Creator View Controller-->
         <scene sceneID="OJr-nF-VZS">
@@ -459,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3O-tX-0kV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4692" y="-1251"/>
+            <point key="canvasLocation" x="-3732" y="-1191"/>
         </scene>
         <!--Navigation Controller - Home TImeline-->
         <scene sceneID="xBU-4Q-zEc">
@@ -475,7 +475,32 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxI-h1-hHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6422" y="-1049"/>
+            <point key="canvasLocation" x="-5462" y="-989"/>
+        </scene>
+        <!--Login View Controller - Twitter-->
+        <scene sceneID="oC6-2X-6xG">
+            <objects>
+                <viewController title="Twitter" id="CUI-Tf-9ko" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B1h-kF-Juy"/>
+                        <viewControllerLayoutGuide type="bottom" id="eFA-rO-6cU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cf1-B6-ps5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="btm-Ja-ZqD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="kPP-M7-Y8E"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9cw-Od-rcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6620" y="-552"/>
         </scene>
     </scenes>
     <resources>
@@ -484,6 +509,7 @@
         <image name="default-wall.jpg" width="898" height="230"/>
         <image name="icon_home.png" width="24" height="24"/>
         <image name="profile_icon.png" width="32" height="32"/>
+        <image name="splash.png" width="640" height="1097"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -491,8 +517,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Z6i-aa-PsM"/>
         <segue reference="vk3-4O-xLP"/>
         <segue reference="cNx-Kj-61B"/>
-        <segue reference="Z6i-aa-PsM"/>
     </inferredMetricsTieBreakers>
 </document>
