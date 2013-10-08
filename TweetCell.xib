@@ -28,9 +28,9 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" verticalCompressionResistancePriority="749" text="Date of tweet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10">
-                        <rect key="frame" x="210" y="61" width="100" height="16"/>
+                        <rect key="frame" x="134" y="61" width="176" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="17"/>
+                            <constraint firstAttribute="width" constant="176" id="17"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

@@ -20,6 +20,7 @@
 		B67C92C3180442020023A0AB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67C92C2180442020023A0AB /* LoginViewController.m */; };
 		B67C92C518044F980023A0AB /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = B67C92C418044F980023A0AB /* splash.png */; };
 		B67C92C7180490620023A0AB /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B67C92C6180490620023A0AB /* appIcon.png */; };
+		B67C92D018049A4E0023A0AB /* NSDate+NVTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = B67C92CF18049A4E0023A0AB /* NSDate+NVTimeAgo.m */; };
 		B683D62B17F4D2C700156C6A /* icon_home.png in Resources */ = {isa = PBXBuildFile; fileRef = B683D62A17F4D2C700156C6A /* icon_home.png */; };
 		B683D62D17F4D37E00156C6A /* profile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B683D62C17F4D37E00156C6A /* profile_icon.png */; };
 		B683D62F17F4D5AB00156C6A /* compose_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B683D62E17F4D5AB00156C6A /* compose_icon.png */; };
@@ -89,6 +90,8 @@
 		B67C92C2180442020023A0AB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B67C92C418044F980023A0AB /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		B67C92C6180490620023A0AB /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
+		B67C92CE18049A4E0023A0AB /* NSDate+NVTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+NVTimeAgo.h"; path = "Model/NSDate+NVTimeAgo.h"; sourceTree = "<group>"; };
+		B67C92CF18049A4E0023A0AB /* NSDate+NVTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+NVTimeAgo.m"; path = "Model/NSDate+NVTimeAgo.m"; sourceTree = "<group>"; };
 		B683D62A17F4D2C700156C6A /* icon_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_home.png; sourceTree = "<group>"; };
 		B683D62C17F4D37E00156C6A /* profile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_icon.png; sourceTree = "<group>"; };
 		B683D62E17F4D5AB00156C6A /* compose_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose_icon.png; sourceTree = "<group>"; };
@@ -350,6 +353,8 @@
 		B6EE877E180326D20006684A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B67C92CE18049A4E0023A0AB /* NSDate+NVTimeAgo.h */,
+				B67C92CF18049A4E0023A0AB /* NSDate+NVTimeAgo.m */,
 				B6EE877A180325030006684A /* ApiInterface.h */,
 				B6EE877B180325030006684A /* ApiInterface.m */,
 				B6EE877F180327060006684A /* TweetObject.h */,
@@ -487,6 +492,7 @@
 				B6EE8784180327B10006684A /* UserObject.m in Sources */,
 				B6FD5CE517FD5A0200809500 /* AFURLResponseSerialization.m in Sources */,
 				B69F1BF017DC9E4300C81DB9 /* TweetsCell.m in Sources */,
+				B67C92D018049A4E0023A0AB /* NSDate+NVTimeAgo.m in Sources */,
 				B68D679217E04E710087CD1A /* TweetsAppDelegate.xcdatamodeld in Sources */,
 				B68D67A217E053270087CD1A /* Tweet+create.m in Sources */,
 				B68D67A717E05B790087CD1A /* User+Create.m in Sources */,

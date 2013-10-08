@@ -3,6 +3,7 @@
 #import "Tweet.h"
 #import "ThreadManager.h"
 #import "Util.h"
+#import "NSDate+NVTimeAgo.h"
 
 @interface TweetsCell()
 @property (nonatomic, weak) Tweet *tweet;
@@ -15,7 +16,7 @@
     self.tweet = tweetData;
     self.tweetText.text = tweetData.text;
     self.handleLabel.text = [[NSString stringWithFormat: @"@%@", tweetData.tweetedBy.handle] description];
-    [Util decorateDate: tweetData.time onLabel: self.date];
+    self.date.text = [tweetData.time formattedAsTimeAgo];
     [self.profileIcon setImage: [UIImage imageWithData:tweetData.tweetedBy.image_data] ?: [UIImage imageNamed:@"default-avatar"]];
 }
 

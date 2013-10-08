@@ -3,6 +3,7 @@
 #import "Util.h"
 #import "ThreadManager.h"
 #import "ProfileTVC.h"
+#import "NSDate+NVTimeAgo.h"
 
 @interface SingleTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -28,7 +29,7 @@
     self.handle.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.handle];
     self.tweetText.text = self.tweet.text;
     [self.imageView setImage:[UIImage imageWithData:self.tweet.tweetedBy.image_data] ?: [UIImage imageNamed:@"default-avatar"]];
-    [Util decorateDate:self.tweet.time onLabel:self.time];
+    self.time.text = [self.tweet.time formattedAsTimeAgo];
     [self handleTweetLabelSize];
 }
 
