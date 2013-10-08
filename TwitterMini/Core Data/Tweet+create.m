@@ -20,7 +20,6 @@
         tweet.id = object.id;
         tweet.timestamp = [NSDate date];
         tweet.tweetedBy = [User UserWithObject:object.tweetedBy inManagedObjectContext:context];
-        [context save:nil];
     } else {
         tweet = [matches lastObject];
     }

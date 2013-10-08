@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 
 + (ThreadManager *) sharedInstance;
-- (void) writeChangeToCoreData;
+- (void) saveChangesWrtContext: (NSManagedObjectContext *) context;
 - (NSManagedObjectContext *) CoreDateReaderInterface;
 - (NSManagedObjectContext*) createInMemoryStoreContext;
 

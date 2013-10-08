@@ -22,11 +22,12 @@ static User *owner = nil;
 + (void) fetchOwnerAndOnFetch: (successBlock) postFetch
 {
     [[ApiInterface sharedInstance] fetchOwnerProfileWithSuccessHandler:^(UserObject *userObject) {
-        [[[ThreadManager sharedInstance] coreDataWriterInterface] performBlock:^{
-            User *fetchedUser = [User UserWithObject:userObject inManagedObjectContext:[[ThreadManager sharedInstance] coreDataWriterInterface]];
+        NSManagedObjectContext *writerContext = [[ThreadManager sharedInstance] coreDataWriterInterface];
+        [writerContext performBlock:^{
+            User *fetchedUser = [User UserWithObject:userObject inManagedObjectContext:writerContext];
             fetchedUser.isOwner = YES;
-            [fetchedUser.managedObjectContext save:nil];
-            [[ThreadManager sharedInstance] writeChangeToCoreData];
+            [writerContext save:nil];
+            [[ThreadManager sharedInstance] saveChangesWrtContext: writerContext];
             owner = fetchedUser;
             postFetch(owner);
         }];

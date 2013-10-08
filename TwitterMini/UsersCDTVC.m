@@ -50,6 +50,7 @@
             for(UserObject *userObject in usersArray) {
                 [tmpWritercontext performBlock:^{
                     [User UserWithObject:userObject inManagedObjectContext:tmpWritercontext];
+                    [[ThreadManager sharedInstance] saveChangesWrtContext:tmpWritercontext];
                 }];
             }
         };

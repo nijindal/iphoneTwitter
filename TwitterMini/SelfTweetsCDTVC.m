@@ -33,6 +33,7 @@
             [self.mainMoc performBlock:^{
                 for (TweetObject *tweetObject in  tweetsArray) {
                     [Tweet tweetWithObject: tweetObject inManagedObjectContext: self.mainMoc];
+                    [[ThreadManager sharedInstance] saveChangesWrtContext: self.mainMoc];
                 }
             }];
         }];

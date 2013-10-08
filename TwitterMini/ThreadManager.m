@@ -44,15 +44,17 @@ static ThreadManager *sharedInstance = nil;
     return _coreDataWriterInterface;
 }
 
-- (void) writeChangeToCoreData
+- (void) saveChangesWrtContext: (NSManagedObjectContext *) context
 {
-    [[self mainThreadContext] performBlock:^{
-        NSError *error;
-        [[self mainThreadContext] save :&error];
-        [self.coreDateWriterContext performBlock:^{
-            NSError *error = nil;
-            [self.coreDateWriterContext save: &error];
-        }];
+    if(!context) return;
+    [context performBlock: ^{
+        NSError *error = nil;
+        [context save :&error];
+        if(error){
+            NSLog(@"Error occured while saving....");
+            return;
+        }
+        [self saveChangesWrtContext: context.parentContext];
     }];
 }
 

@@ -40,7 +40,7 @@
     for (TweetObject *tweetObject in  tweetsArray) {
         [writerContext performBlock:^{
             [Tweet tweetWithObject:tweetObject inManagedObjectContext: writerContext];
-            [[ThreadManager sharedInstance] writeChangeToCoreData];
+            [[ThreadManager sharedInstance] saveChangesWrtContext: writerContext];
         }];
     }
 }

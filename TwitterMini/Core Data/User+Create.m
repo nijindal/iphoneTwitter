@@ -39,10 +39,9 @@
             [context performBlock:^{
                 user.timestamp = [NSDate date];
                 user.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString: user.image_url]];
-                [context save:nil];
+                [[ThreadManager sharedInstance] saveChangesWrtContext:context];
             }];
         });
-        [context save:nil];
     } else {
         user = [matches lastObject];
     }

@@ -25,4 +25,6 @@
 
 - (UserObject *) initWithApiData: (NSDictionary *) userData;
 
+- (NSDictionary *) toDictionary;
+
 @end

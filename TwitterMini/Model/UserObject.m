@@ -25,4 +25,12 @@
     return self;
 }
 
+- (NSDictionary *) toDictionary
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:
+                                       @[self.name, self.handle, self.desc, self.image_url, self.followers_count, self.friends_count, self.banner_url, self.tweet_count, self.id]  forKeys:
+                                       @[@"name", @"handle", @"desc", @"image_url", @"followers_count", @"friends_count", @"banner_url", @"tweet_count", @"id"]];
+    return dictionary;
+}
+
 @end
