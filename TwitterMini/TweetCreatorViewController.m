@@ -15,11 +15,10 @@
 
 @implementation TweetCreatorViewController
 
-- (void) viewDidLoad
+- (void) viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    [[self.tweetArea layer] setBorderColor:[[UIColor grayColor] CGColor]];
-    [[self.tweetArea layer] setBorderWidth:2.3];
+    [super viewWillAppear:animated];
+    [self.tweetArea becomeFirstResponder];
 }
 
 - (void) textViewDidChange:(UITextView *)textView
