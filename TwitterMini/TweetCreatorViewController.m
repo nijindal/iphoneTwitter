@@ -1,6 +1,6 @@
 #import "TweetCreatorViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ApiManager.h"
+#import "ApiInterface.h"
 #import "ThreadManager.h"
 
 @interface TweetCreatorViewController ()<UITextViewDelegate>
@@ -36,13 +36,14 @@
     }
     dispatch_async(GCDBackgroundThread, ^{
         self.sendButton.enabled = NO;
-        [[ApiManager sharedInstance] postTweet:tweetText
-                                     onSuccess:^(id responseObject) {
-                                         self.sendButton.enabled = YES;
-                                         [self dismissViewControllerAnimated:YES completion:nil];
-                                     } onFailure:^(NSError *error) {
-                                         self.sendButton.enabled = YES;
-                                     }];
+        [[ApiInterface sharedInstance] postTweet:tweetText onSuccess:^{
+            self.sendButton.enabled = YES;
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } onFailure:^(NSError *error) {
+            self.sendButton.enabled = YES;
+            NSLog(@"Error occured %@", error);
+            NSLog(@"Error occured. Please try again");
+        }];
     });
     
 }

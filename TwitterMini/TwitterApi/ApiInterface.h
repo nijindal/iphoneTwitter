@@ -14,6 +14,8 @@
 
 typedef void (^tweetsFetchSuccess) (NSArray *tweetsArray);
 typedef void (^usersFetchSuccess) (NSArray *usersArray);
+typedef void (^ownerFetchSuccess) (UserObject *user);
+typedef void (^tweetPostSuccess) (void);
 
 + (ApiInterface *) sharedInstance;
 - (void)fetchTimelineForUser:(NSString *)user count:(int)count sinceID:(NSString *)sinceID maxID:(NSString *)maxID onSuccess: (tweetsFetchSuccess) success;
@@ -21,4 +23,8 @@ typedef void (^usersFetchSuccess) (NSArray *usersArray);
 - (void) fetchOldTweetsWithResponseHandler: (tweetsFetchSuccess) handler;
 - (void)listFollowersForUser:(NSString *)user withCursor:(NSString *)cursor onSuccess: (usersFetchSuccess) success onFailure:(onErrorBlock)failure;
 - (void)listFriendsForUser:(NSString *)user withCursor:(NSString *)cursor onSuccess: (usersFetchSuccess) success onFailure:(onErrorBlock)failure;
+
+- (void)postTweet:(NSString *)tweetString onSuccess:(tweetPostSuccess)success onFailure:(onErrorBlock)failure;
+- (void) fetchOwnerProfileWithSuccessHandler: (ownerFetchSuccess) onSuccess failHandler: (onErrorBlock) failure;
+
 @end

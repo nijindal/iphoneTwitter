@@ -27,7 +27,7 @@
     self.name.text = self.tweet.tweetedBy.name;
     self.handle.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.handle];
     self.tweetText.text = self.tweet.text;
-    [self.imageView setImage:[UIImage imageWithData:self.tweet.tweetedBy.image_data]];
+    [self.imageView setImage:[UIImage imageWithData:self.tweet.tweetedBy.image_data] ?: [UIImage imageNamed:@"default-avatar"]];
     [Util decorateDate:self.tweet.time onLabel:self.time];
     [self handleTweetLabelSize];
 }

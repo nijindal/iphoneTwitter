@@ -1,7 +1,7 @@
 
 #import "UserProfileManager.h"
 #import "ThreadManager.h"
-#import "ApiManager.h"
+#import "ApiInterface.h"
 #import "UserObject.h"
 
 static User *owner = nil;
@@ -14,17 +14,14 @@ static User *owner = nil;
         postFetch(owner);
         return;
     }
-    //TODO: Find a better pattern to handle this case. async will make it ever more dirty..
     [self fetchFromCoreDataAndOnSuccess: postFetch onFailure: ^{
         [self fetchOwnerAndOnFetch: postFetch];
     }];
-    
 }
 
 + (void) fetchOwnerAndOnFetch: (successBlock) postFetch
 {
-    [[ApiManager sharedInstance] fetchProfileAndOnSuccess:^(id profile) {
-        UserObject *userObject = [[UserObject alloc] initWithApiData:profile];
+    [[ApiInterface sharedInstance] fetchOwnerProfileWithSuccessHandler:^(UserObject *userObject) {
         [[[ThreadManager sharedInstance] coreDataWriterInterface] performBlock:^{
             User *fetchedUser = [User UserWithObject:userObject inManagedObjectContext:[[ThreadManager sharedInstance] coreDataWriterInterface]];
             fetchedUser.isOwner = YES;
@@ -33,7 +30,7 @@ static User *owner = nil;
             owner = fetchedUser;
             postFetch(owner);
         }];
-    } onFailure:^(NSError *error) {
+    } failHandler:^(NSError *error) {
         NSLog(@"Error occured: %@", error);
     }];
 }

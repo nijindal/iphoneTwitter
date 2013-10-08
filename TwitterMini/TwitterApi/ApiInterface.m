@@ -120,5 +120,20 @@ static ApiInterface *sharedInstance = nil;
     return usersArray;
 }
 
+- (void)postTweet:(NSString *)tweetString onSuccess:(tweetPostSuccess)success onFailure:(onErrorBlock)failure
+{
+    [[ApiManager sharedInstance] postTweet:tweetString onSuccess:^(id responseObject) {
+        success();
+    } onFailure:failure];
+}
+
+- (void) fetchOwnerProfileWithSuccessHandler: (ownerFetchSuccess) onSuccess failHandler: (onErrorBlock) failure
+{
+    [[ApiManager sharedInstance] fetchProfileAndOnSuccess:^(id responseObject) {
+        UserObject *userObject = [[UserObject alloc] initWithApiData: responseObject];
+        onSuccess(userObject);
+    } onFailure:failure];
+}
+
 
 @end
