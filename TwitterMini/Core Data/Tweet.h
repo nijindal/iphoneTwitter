@@ -2,7 +2,7 @@
 //  Tweet.h
 //  TwitterMini
 //
-//  Created by nikhil.ji on 26/09/13.
+//  Created by nikhil.ji on 08/10/13.
 //  Copyright (c) 2013 directi. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSDate * time;
+@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) User *tweetedBy;
 
 @end

@@ -16,7 +16,7 @@
     self.tweetText.text = tweetData.text;
     self.handleLabel.text = [[NSString stringWithFormat: @"@%@", tweetData.tweetedBy.handle] description];
     [Util decorateDate: tweetData.time onLabel: self.date];
-    [self.profileIcon setImage: [UIImage imageWithData:tweetData.tweetedBy.image_data]];
+    [self.profileIcon setImage: [UIImage imageWithData:tweetData.tweetedBy.image_data] ?: [UIImage imageNamed:@"default-avatar"]];
 }
 
 - (void) layoutSubviews {

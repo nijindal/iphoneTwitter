@@ -34,7 +34,14 @@
         user.banner_url = object.banner_url;
         user.tweet_count = object.tweet_count;
         user.id = object.id;
-        user.image_data = object.image_data;
+        user.timestamp = [NSDate date];
+        dispatch_async(GCDLowPrioityQueue, ^{
+            [context performBlock:^{
+                user.timestamp = [NSDate date];
+                user.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString: user.image_url]];
+                [context save:nil];
+            }];
+        });
         [context save:nil];
     } else {
         user = [matches lastObject];

@@ -2,7 +2,7 @@
 //  User.h
 //  TwitterMini
 //
-//  Created by nikhil.ji on 26/09/13.
+//  Created by nikhil.ji on 08/10/13.
 //  Copyright (c) 2013 directi. All rights reserved.
 //
 
@@ -21,9 +21,10 @@
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSData * image_data;
 @property (nonatomic, retain) NSString * image_url;
+@property (nonatomic) BOOL isOwner;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * tweet_count;
-@property (nonatomic) BOOL isOwner;
+@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSSet *followers;
 @property (nonatomic, retain) NSSet *friends;
 @property (nonatomic, retain) NSSet *tweets;

@@ -22,8 +22,6 @@
     self.banner_url = [[userData valueForKey:@"profile_banner_url"] description];
     self.tweet_count = [userData valueForKey:@"statuses_count"];
     self.id = [userData valueForKey:@"id"];
-    //TODO : Make it Asynchronous and make everyone else Observe this value.
-    self.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString: self.image_url]];
     return self;
 }
 

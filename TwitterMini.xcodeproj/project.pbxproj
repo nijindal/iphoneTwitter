@@ -40,8 +40,8 @@
 		B69F1BE617DBA67100C81DB9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BE517DBA67100C81DB9 /* Social.framework */; };
 		B69F1BE817DBA67F00C81DB9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BE717DBA67F00C81DB9 /* Accounts.framework */; };
 		B69F1BF017DC9E4300C81DB9 /* TweetsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F1BEF17DC9E4300C81DB9 /* TweetsCell.m */; };
-		B6C217CA17F36BD300E53748 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C217C917F36BD300E53748 /* Tweet.m */; };
-		B6C217CD17F36BD300E53748 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C217CC17F36BD300E53748 /* User.m */; };
+		B6DA34711803FB5000AEB9BF /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DA34701803FB5000AEB9BF /* Tweet.m */; };
+		B6DA34741803FB5000AEB9BF /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DA34731803FB5000AEB9BF /* User.m */; };
 		B6EE877C180325030006684A /* ApiInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EE877B180325030006684A /* ApiInterface.m */; };
 		B6EE8781180327060006684A /* TweetObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EE8780180327060006684A /* TweetObject.m */; };
 		B6EE8784180327B10006684A /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EE8783180327B10006684A /* UserObject.m */; };
@@ -113,10 +113,10 @@
 		B69F1BE717DBA67F00C81DB9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B69F1BEE17DC9E4300C81DB9 /* TweetsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetsCell.h; path = views/TweetsCell.h; sourceTree = "<group>"; };
 		B69F1BEF17DC9E4300C81DB9 /* TweetsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetsCell.m; path = views/TweetsCell.m; sourceTree = "<group>"; };
-		B6C217C817F36BD300E53748 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tweet.h; path = "Core Data/Tweet.h"; sourceTree = "<group>"; };
-		B6C217C917F36BD300E53748 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tweet.m; path = "Core Data/Tweet.m"; sourceTree = "<group>"; };
-		B6C217CB17F36BD300E53748 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "Core Data/User.h"; sourceTree = "<group>"; };
-		B6C217CC17F36BD300E53748 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "Core Data/User.m"; sourceTree = "<group>"; };
+		B6DA346F1803FB5000AEB9BF /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tweet.h; path = "Core Data/Tweet.h"; sourceTree = "<group>"; };
+		B6DA34701803FB5000AEB9BF /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tweet.m; path = "Core Data/Tweet.m"; sourceTree = "<group>"; };
+		B6DA34721803FB5000AEB9BF /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = "Core Data/User.h"; sourceTree = "<group>"; };
+		B6DA34731803FB5000AEB9BF /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = "Core Data/User.m"; sourceTree = "<group>"; };
 		B6EE877A180325030006684A /* ApiInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiInterface.h; path = TwitterApi/ApiInterface.h; sourceTree = "<group>"; };
 		B6EE877B180325030006684A /* ApiInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApiInterface.m; path = TwitterApi/ApiInterface.m; sourceTree = "<group>"; };
 		B6EE877D180325CD0006684A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -227,10 +227,10 @@
 				B68D67A817E05EA50087CD1A /* CoreDataTableViewController.h */,
 				B68D67A917E05EA50087CD1A /* CoreDataTableViewController.m */,
 				B68D679017E04E710087CD1A /* TweetsAppDelegate.xcdatamodeld */,
-				B6C217CB17F36BD300E53748 /* User.h */,
-				B6C217CC17F36BD300E53748 /* User.m */,
-				B6C217C817F36BD300E53748 /* Tweet.h */,
-				B6C217C917F36BD300E53748 /* Tweet.m */,
+				B6DA34721803FB5000AEB9BF /* User.h */,
+				B6DA34731803FB5000AEB9BF /* User.m */,
+				B6DA346F1803FB5000AEB9BF /* Tweet.h */,
+				B6DA34701803FB5000AEB9BF /* Tweet.m */,
 				B68D67A017E053270087CD1A /* Tweet+create.h */,
 				B68D67A117E053270087CD1A /* Tweet+create.m */,
 				B68D67A517E05B790087CD1A /* User+Create.h */,
@@ -484,6 +484,7 @@
 				B6FD5CE617FD5A0200809500 /* AFURLSessionManager.m in Sources */,
 				B6158E6E17E0894A0047A30F /* TweetsCDTVC.m in Sources */,
 				B62A8A9217F30A9400117751 /* ProfileTVC.m in Sources */,
+				B6DA34741803FB5000AEB9BF /* User.m in Sources */,
 				B6FD5CE017FD5A0200809500 /* AFHTTPSessionManager.m in Sources */,
 				B6FD5CE117FD5A0200809500 /* AFNetworkReachabilityManager.m in Sources */,
 				B6EE9DBD17E3001300D3F287 /* SelfTweetsCDTVC.m in Sources */,
@@ -494,12 +495,11 @@
 				B625C79F17E756BA007775F2 /* FHSTwitterEngine.m in Sources */,
 				B625C7D917E9E4F8007775F2 /* ThreadManager.m in Sources */,
 				B66D2B9B17EAF22D0097A64E /* SingleTweetViewController.m in Sources */,
+				B6DA34711803FB5000AEB9BF /* Tweet.m in Sources */,
 				B6EE8781180327060006684A /* TweetObject.m in Sources */,
 				B66D2B9E17EAFA2B0097A64E /* Util.m in Sources */,
 				B617452617F07FDE00DB038C /* TweetCreatorViewController.m in Sources */,
 				B62A8A9C17F313F900117751 /* UserProfileManager.m in Sources */,
-				B6C217CA17F36BD300E53748 /* Tweet.m in Sources */,
-				B6C217CD17F36BD300E53748 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

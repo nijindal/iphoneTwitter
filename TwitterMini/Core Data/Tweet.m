@@ -2,7 +2,7 @@
 //  Tweet.m
 //  TwitterMini
 //
-//  Created by nikhil.ji on 26/09/13.
+//  Created by nikhil.ji on 08/10/13.
 //  Copyright (c) 2013 directi. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 @dynamic id;
 @dynamic text;
 @dynamic time;
+@dynamic timestamp;
 @dynamic tweetedBy;
 
 @end
