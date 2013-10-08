@@ -489,12 +489,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="btm-Ja-ZqD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="btm-Ja-ZqD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="btm-Ja-ZqD" secondAttribute="trailing" id="Em2-9W-t4s"/>
+                            <constraint firstItem="btm-Ja-ZqD" firstAttribute="leading" secondItem="cf1-B6-ps5" secondAttribute="leading" id="Tfu-f7-pBv"/>
+                            <constraint firstItem="btm-Ja-ZqD" firstAttribute="top" secondItem="cf1-B6-ps5" secondAttribute="top" id="h32-iC-qjF"/>
+                            <constraint firstItem="eFA-rO-6cU" firstAttribute="top" secondItem="btm-Ja-ZqD" secondAttribute="bottom" id="vq8-pb-9BI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="kPP-M7-Y8E"/>
                 </viewController>
