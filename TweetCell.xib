@@ -21,46 +21,46 @@
                             <constraint firstAttribute="width" constant="36" id="116"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Tweet loading." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="11">
-                        <rect key="frame" x="54" y="36" width="256" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Tweet loading." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="254" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                        <rect key="frame" x="56" y="33" width="254" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" verticalCompressionResistancePriority="749" text="Date of tweet" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10">
-                        <rect key="frame" x="134" y="61" width="176" height="16"/>
+                        <rect key="frame" x="223" y="59" width="87" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="176" id="17"/>
+                            <constraint firstAttribute="height" constant="18" id="Qhh-Gq-uGg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64">
-                        <rect key="frame" x="54" y="10" width="246" height="18"/>
+                        <rect key="frame" x="56" y="10" width="254" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="92"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="11" firstAttribute="top" secondItem="64" secondAttribute="bottom" constant="8" id="D07-P0-Frp"/>
-                    <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="5" id="J8P-sI-xWM"/>
+                    <constraint firstItem="11" firstAttribute="top" secondItem="64" secondAttribute="bottom" constant="5" id="D07-P0-Frp"/>
+                    <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="5" id="Mhf-fh-kAf"/>
+                    <constraint firstItem="11" firstAttribute="leading" secondItem="64" secondAttribute="leading" id="XIo-rG-WaO"/>
                     <constraint firstItem="11" firstAttribute="trailing" secondItem="10" secondAttribute="trailing" id="ZVj-bk-AUw"/>
+                    <constraint firstItem="64" firstAttribute="trailing" secondItem="11" secondAttribute="trailing" id="abX-eo-sqi"/>
                 </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
             </accessibility>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="64" secondAttribute="trailing" constant="20" id="5XF-7r-kbd"/>
-                <constraint firstItem="64" firstAttribute="leading" secondItem="12" secondAttribute="trailing" constant="8" symbolic="YES" id="JQv-SN-pku"/>
-                <constraint firstItem="10" firstAttribute="top" secondItem="11" secondAttribute="bottom" constant="8" symbolic="YES" id="Oqh-CP-JIO"/>
-                <constraint firstItem="11" firstAttribute="leading" secondItem="12" secondAttribute="trailing" constant="8" symbolic="YES" id="PGI-jC-vjw"/>
+                <constraint firstItem="64" firstAttribute="leading" secondItem="12" secondAttribute="trailing" constant="10" id="JQv-SN-pku"/>
+                <constraint firstItem="10" firstAttribute="top" secondItem="11" secondAttribute="bottom" constant="5" id="Oqh-CP-JIO"/>
                 <constraint firstItem="64" firstAttribute="top" secondItem="12" secondAttribute="top" id="WtP-cz-77R"/>
                 <constraint firstItem="12" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="10" id="lP7-0K-7eC"/>
                 <constraint firstItem="12" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" id="oS7-ck-dkr"/>

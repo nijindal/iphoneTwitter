@@ -34,17 +34,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat cellHeight;
-    NSUInteger PADDING_TOP = 35;
-    NSUInteger HEIGHT_DATE = 30;
-    NSUInteger labelWidth;
-    
     Tweet *tweet = [self.fetchResultsController objectAtIndexPath:indexPath];
-    UIFont *font = [UIFont systemFontOfSize:14];
-    labelWidth = (self.tableView.frame.size.width == 320) ? 236 : 396;
-    CGSize expectedLabelSize = [tweet.text sizeWithFont:font constrainedToSize:CGSizeMake(labelWidth, 6000) lineBreakMode: NSLineBreakByWordWrapping];
-    cellHeight = expectedLabelSize.height + (PADDING_TOP + HEIGHT_DATE);
-    return cellHeight;
+    return [TweetsCell cellHeightInCurrentModeForText:tweet.text];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

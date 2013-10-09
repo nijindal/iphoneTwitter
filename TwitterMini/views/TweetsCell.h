@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
 
++ (NSUInteger) cellHeightInCurrentModeForText: (NSString *) text;
 - (void) populateWithContent: (Tweet *) content;
 
 @end
