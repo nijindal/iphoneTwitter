@@ -31,6 +31,9 @@
 		B68D67A717E05B790087CD1A /* User+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D67A617E05B790087CD1A /* User+Create.m */; };
 		B68D67AA17E05EA50087CD1A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68D67A917E05EA50087CD1A /* CoreDataTableViewController.m */; };
 		B68D67AB17E065E70087CD1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68D67A317E054D00087CD1A /* CoreData.framework */; };
+		B698FBF11807FA12004CC8C5 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B698FBF01807FA12004CC8C5 /* Reveal.framework */; };
+		B698FBF31807FA36004CC8C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B698FBF21807FA36004CC8C5 /* QuartzCore.framework */; };
+		B698FBF51807FA44004CC8C5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B698FBF41807FA44004CC8C5 /* CFNetwork.framework */; };
 		B69F1BBF17DBA3B700C81DB9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BBE17DBA3B700C81DB9 /* UIKit.framework */; };
 		B69F1BC117DBA3B700C81DB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BC017DBA3B700C81DB9 /* Foundation.framework */; };
 		B69F1BC317DBA3B700C81DB9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69F1BC217DBA3B700C81DB9 /* CoreGraphics.framework */; };
@@ -105,6 +108,9 @@
 		B68D67A617E05B790087CD1A /* User+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+Create.m"; path = "Core Data/User+Create.m"; sourceTree = "<group>"; };
 		B68D67A817E05EA50087CD1A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		B68D67A917E05EA50087CD1A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		B698FBF01807FA12004CC8C5 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		B698FBF21807FA36004CC8C5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B698FBF41807FA44004CC8C5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B69F1BBB17DBA3B700C81DB9 /* TwitterMini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterMini.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69F1BBE17DBA3B700C81DB9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B69F1BC017DBA3B700C81DB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -169,6 +175,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B698FBF51807FA44004CC8C5 /* CFNetwork.framework in Frameworks */,
+				B698FBF31807FA36004CC8C5 /* QuartzCore.framework in Frameworks */,
 				B6FD5CEA17FD76F300809500 /* MobileCoreServices.framework in Frameworks */,
 				B625C79517E754B6007775F2 /* SystemConfiguration.framework in Frameworks */,
 				B6FD5CE817FD76D200809500 /* Security.framework in Frameworks */,
@@ -176,6 +184,7 @@
 				B69F1BE817DBA67F00C81DB9 /* Accounts.framework in Frameworks */,
 				B69F1BE617DBA67100C81DB9 /* Social.framework in Frameworks */,
 				B69F1BBF17DBA3B700C81DB9 /* UIKit.framework in Frameworks */,
+				B698FBF11807FA12004CC8C5 /* Reveal.framework in Frameworks */,
 				B69F1BC117DBA3B700C81DB9 /* Foundation.framework in Frameworks */,
 				B69F1BC317DBA3B700C81DB9 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -271,6 +280,9 @@
 		B69F1BBD17DBA3B700C81DB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B698FBF41807FA44004CC8C5 /* CFNetwork.framework */,
+				B698FBF21807FA36004CC8C5 /* QuartzCore.framework */,
+				B698FBF01807FA12004CC8C5 /* Reveal.framework */,
 				B6FD5CE917FD76F300809500 /* MobileCoreServices.framework */,
 				B6FD5CE717FD76D200809500 /* Security.framework */,
 				B625C79417E754B6007775F2 /* SystemConfiguration.framework */,
@@ -606,9 +618,14 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/nikhil.ji/repos/TwitterMini,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwitterMini/TwitterMini-Prefix.pch";
 				INFOPLIST_FILE = "TwitterMini/TwitterMini-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -620,9 +637,14 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/nikhil.ji/repos/TwitterMini,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwitterMini/TwitterMini-Prefix.pch";
 				INFOPLIST_FILE = "TwitterMini/TwitterMini-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
